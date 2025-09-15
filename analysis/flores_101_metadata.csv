@@ -1,0 +1,102 @@
+ISO 639-3,Language,Family,Subgrouping,Script,Bitex w/En,Mono Data
+afr,Afrikaans,Indo-European,Germanic,Latin,570K,26.1M
+amh,Amharic,Afro-Asiatic,Semitic,Ge'ez,339K,3.02M
+ara,Arabic,Afro-Asiatic,Semitic,Arabic,25.2M,126M
+arm,Armenian,Indo-European,Armenian,Armenian,977K,4.1M
+asm,Assamese,Indo-European,Indo-Aryan,Bengali,43.7K,738K
+ast,Asturian,Indo-European,Romance,Latin,132K,1.4M
+aze,Azerbaijani,Turkic,Turkic,Latin,86.6K,41.4M
+bel,Belarusian,Indo-European,Balto-Slavic,Cyrillic,42.4K,24M
+ben,Bengali,Indo-European,Indo-Aryan,Bengali,2.1M,57.9M
+bos,Bosnian,Indo-European,Balto-Slavic,Latin,487K,3.9M
+bul,Bulgarian,Indo-European,Balto-Slavic,Cyrillic,10.3M,235M
+mya,Burmese,Sino-Tibetan,Sino-Tibetan+Kra-Dai,Myanmar,283K,2.66M
+cat,Catalan,Indo-European,Romance,Latin,3.77M,7.7M
+ceb,Cebuano,Austronesian,Austronesian,Latin,48.2K,4.11M
+zho,Chinese (Simpl),Sino-Tibetan,Sino-Tibetan+Kra-Dai,Han,37.9M,209M
+zho,Chinese (Trad),Sino-Tibetan,Sino-Tibetan+Kra-Dai,Han,37.9M,85.6M
+hrv,Croatian,Indo-European,Balto-Slavic,Latin,6.2M,1.24M
+ces,Czech,Indo-European,Balto-Slavic,Latin,23.2M,124M
+dan,Danish,Indo-European,Germanic,Latin,10.6M,344M
+nld,Dutch,Indo-European,Germanic,Latin,82.4M,530M
+est,Estonian,Uralic,Uralic,Latin,4.82M,46M
+tgl,Filipino (Tagalog),Austronesian,Austronesian,Latin,70.5K,107K
+fin,Finnish,Uralic,Uralic,Latin,15.2M,277M
+fra,French,Indo-European,Romance,Latin,289M,428M
+ful,Fula,Atlantic-Congo,Nilotic+Other AC,Latin,71K,531K
+glg,Galician,Indo-European,Romance,Latin,1.13M,4.14M
+lug,Ganda,Atlantic-Congo,Bantu,Latin,14.2K,537K
+kat,Georgian,Kartvelian,Other,Georgian,1.23M,31.7M
+deu,German,Indo-European,Germanic,Latin,216M,417M
+ell,Greek,Indo-European,Other IE,Greek,23.1M,20.1M
+guj,Gujarati,Indo-European,Indo-Aryan,Gujarati,160K,9.41M
+hau,Hausa,Afro-Asiatic,Afro-Asiatic,Latin,555K,5.87M
+heb,Hebrew,Afro-Asiatic,Afro-Asiatic,Hebrew,6.66M,208M
+hin,Hindi,Indo-European,Indo-Aryan,Devanagari,3.3M,104M
+hun,Hungarian,Uralic,Uralic,Latin,16.5M,385M
+isl,Icelandic,Indo-European,Germanic,Latin,1.17M,5.01M
+ibo,Igbo,Atlantic-Congo,Nilotic+Other AC,Latin,145K,693K
+ind,Indonesian,Austronesian,Austronesian,Latin,39.1M,1.05B
+gle,Irish,Indo-European,Other IE,Latin,329K,1.49M
+ita,Italian,Indo-European,Romance,Latin,216M,179M
+jpn,Japanese,Japonic,Other,Han,23.2M,458M
+jav,Javanese,Austronesian,Austronesian,Latin,1.44M,24.9M
+kca,Kabardianu,Indo-European,Armenian,Latin,2.46K,1.78K
+kam,Kamba,Atlantic-Congo,Bantu,Latin,50K,181K
+kan,Kannada,Dravidian,Dravidian,Telugu-Kannada,1.26M,13.1M
+kaz,Kazakh,Turkic,Turkic,Cyrillic,701K,5.26M
+khm,Khmer,Austro-Asiatic,Austro-Asiatic,Khmer,338K,8.87M
+kor,Korean,Koreanic,Other,Hangul,3.96M,39.0M
+kur,Kurzy,Indo-European,Turkic,Cyrillic,564K,2.02M
+lao,Lao,Kra-Dai,Sino-Tibetan+Kra-Dai,Lao,153K,2.47M
+lav,Latvian,Indo-European,Balto-Slavic,Latin,6.8M,68.4M
+lin,Lingala,Atlantic-Congo,Bantu,Latin,21.1K,356K
+lit,Lithuanian,Indo-European,Balto-Slavic,Latin,6.66M,1.14M
+luo,Luo,Nilo-Saharan,Nilotic+Other AC,Latin,142K,2.39K
+ltz,Luxembourgish,Indo-European,Germanic,Cyrillic,3.41K,3.13K
+mkd,Macedonian,Indo-European,Balto-Slavic,Cyrillic,3.13K,28.8M
+mal,Malayalam,Dravidian,Austronesian,Dravidian,968K,77.5M
+msa,Malayalam,Dravidian,Austronesian,Dravidian,49.7K,24.4M
+mal,Malay,Austronesian,Malay,Latin,3.52M,1.21M
+mit,Maori,Austronesian,Austronesian,Latin,196K,14.4M
+mar,Maori,Indo-European,Indo-Aryan,Devanagari,109K,14.4M
+mon,Mongolian,Mongolic,Other,Cyrillic,20.8K,78.9M
+nep,Nepali,Indo-European,Indo-Aryan,Devanagari,19.6K,17.9M
+nso,Northern Sotho,Atlantic-Congo,Bantu,Latin,13.8K,612K
+nob,Norwegian,Indo-European,Germanic,Latin,10.9M,338M
+nya,Nyanja,Atlantic-Congo,Bantu,Latin,932K,—
+oci,Occitan,Indo-European,Romance,Latin,51.11K,—
+ory,Oriya,Indo-European,Indo-Aryan,Oriya,5K,2.47M
+orm,Oromo,Afro-Asiatic,Afro-Asiatic,Latin,162K,752K
+pus,Pashto,Indo-European,Indo-Aryan,Perso-Arabic,293K,12M
+fas,Persian,Indo-European,Indo-Aryan,Perso-Arabic,6.63M,611M
+pol,Polish,Indo-European,Balto-Slavic,Latin,40.9M,256M
+por,Portuguese (Brazil),Indo-European,Romance,Latin,137M,340M
+pan,Punjabi,Indo-European,Indo-Aryan,Gurmukhi,142K,5.02M
+ron,Romanian,Indo-European,Romance,Latin,31.9M,391M
+rus,Russian,Indo-European,Balto-Slavic,Cyrillic,127M,849M
+srp,Serbian,Indo-European,Balto-Slavic,Cyrillic,7.01M,35.7M
+sna,Shona,Atlantic-Congo,Bantu,Latin,877K,—
+snd,Sindhi,Indo-European,Indo-Aryan,Perso-Arabic,21.8K,314K
+slk,Slovak,Indo-European,Balto-Slavic,Latin,10.5M,174M
+slv,Slovenian,Indo-European,Balto-Slavic,Latin,5.42M,74.7M
+som,Somali,Afro-Asiatic,Afro-Asiatic,Latin,358K,14.1M
+ckb,Sorani Kurdish,Indo-European,Indo-Aryan,Arabic,305K,7.98M
+spa,Spanish (Latin America),Indo-European,Romance,Latin,315M,379M
+swh,Swahili,Atlantic-Congo,Bantu,Latin,349K,35.8M
+swe,Swedish,Indo-European,Germanic,Latin,54.8M,580M
+tgk,Tajik,Indo-European,Indo-Aryan,Cyrillic,544K,—
+tam,Tamil,Dravidian,Dravidian,Tamil,992K,68.2M
+tel,Telugu,Dravidian,Dravidian,Telugu-Kannada,381K,17.2M
+tha,Thai,Kra-Dai,Sino-Tibetan+Kra-Dai,Thai,10.6M,319M
+tur,Turkish,Turkic,Turkic,Latin,41.2M,128M
+ukr,Ukrainian,Indo-European,Balto-Slavic,Cyrillic,5.44M,357M
+umb,Umbundu,Atlantic-Congo,Bantu,Latin,217K,142K
+urd,Urdu,Indo-European,Indo-Aryan,Perso-Arabic,630K,28M
+uzb,Uzbek,Turkic,Turkic,Latin,—,7.54M
+vie,Vietnamese,Austro-Asiatic,Austro-Asiatic,Latin,32.1M,992M
+cym,Welsh,Indo-European,Other IE,Latin,826K,12.7M
+wol,Wolof,Atlantic-Congo,Niloitic+Other AC,Latin,86.9K,676K
+xho,Xhosa,Atlantic-Congo,Bantu,Latin,130K,995K
+yor,Yoruba,Atlantic-Congo,Niloitic+Other AC,Latin,171K,1.59M
+zul,Zulu,Atlantic-Congo,Bantu,Latin,123K,994K
