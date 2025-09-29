@@ -4,7 +4,7 @@
 #SBATCH --job-name=multilang_eval
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
-#SBATCH --time=12:00:00
+#SBATCH --time=30:00:00
 #SBATCH --output=outputs/multilang_eval_%A.out
 #SBATCH --mem=128G
 

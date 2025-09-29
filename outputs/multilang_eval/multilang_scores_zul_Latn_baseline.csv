@@ -1,0 +1,9 @@
+src_lang,tgt_lang,dataset,mode,split,bleu,chrf,comet22,kiwi23,n_samples
+zul_Latn,deu_Latn,flores,baseline,devtest,20.69,48.43,0.7486,0.5652,1012
+zul_Latn,rus_Cyrl,flores,baseline,devtest,18.04,44.24,0.7942,0.4970,1012
+zul_Latn,fra_Latn,flores,baseline,devtest,27.86,52.68,0.7581,0.5532,1012
+zul_Latn,nld_Latn,flores,baseline,devtest,16.69,46.76,0.7650,0.5451,1012
+zul_Latn,pol_Latn,flores,baseline,devtest,13.22,40.17,0.7876,0.4626,1012
+zul_Latn,lvs_Latn,flores,baseline,devtest,13.09,40.52,0.7511,0.2750,1012
+zul_Latn,tel_Telu,flores,baseline,devtest,10.68,43.52,0.7584,0.4390,1012
+zul_Latn,swh_Latn,flores,baseline,devtest,21.75,51.35,0.7980,0.3973,1012

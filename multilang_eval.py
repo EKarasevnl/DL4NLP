@@ -62,6 +62,7 @@ class EvalConfig:
     model_id: str
     mode: str
     langs: List[str]
+    src_lang: str  # Specific source language for parallel processing
     split: str
     batch_size: int
     max_new_tokens: int
@@ -72,7 +73,8 @@ def _prepare_model_and_tokenizer(model_id: str, mode: str):
     """Load model and tokenizer based on mode."""
     tokenizer = _load_tokenizer(model_id)
     if mode == "baseline":
-        model, _ = _load_model_baseline(model_id)
+        dtype = _dtype_baseline()
+        model = _load_model_baseline(model_id, dtype)
     elif mode == "int8":
         model = _load_model_int8(model_id)
     elif mode == "int4":
@@ -302,7 +304,16 @@ def run(cfg: EvalConfig) -> int:
     _print_env()
     
     os.makedirs(cfg.output_dir, exist_ok=True)
-    csv_path = os.path.join(cfg.output_dir, "multilang_scores.csv")
+    
+    # Create separate output file for each source language and mode
+    if cfg.src_lang:
+        csv_filename = f"multilang_scores_{cfg.src_lang}_{cfg.mode}.csv"
+        print(f"Running evaluation for source language: {cfg.src_lang}, mode: {cfg.mode}")
+    else:
+        csv_filename = f"multilang_scores_{cfg.mode}.csv"
+        print(f"Running evaluation for all language pairs, mode: {cfg.mode}")
+    
+    csv_path = os.path.join(cfg.output_dir, csv_filename)
     
     # Write CSV header
     with open(csv_path, "w", newline="") as f:
@@ -318,14 +329,26 @@ def run(cfg: EvalConfig) -> int:
 
     model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
 
-    # Generate all language pairs (excluding English)
-    lang_pairs = list(combinations(cfg.langs, 2))
+    # Generate language pairs based on configuration
+    if cfg.src_lang:
+        # Parallel mode: evaluate only from the specified source language
+        target_langs = [lang for lang in cfg.langs if lang != cfg.src_lang]
+        lang_pairs = [(cfg.src_lang, tgt_lang) for tgt_lang in target_langs]
+        print(f"\nEvaluating {len(lang_pairs)} language pairs from {cfg.src_lang}...")
+    else:
+        # Original mode: evaluate all language pairs in both directions
+        lang_pairs = list(combinations(cfg.langs, 2))
+        print(f"\nEvaluating {len(lang_pairs)} language pairs in both directions...")
     
-    print(f"\nEvaluating {len(lang_pairs)} language pairs in both directions...")
-    
-    for src_lang, tgt_lang in lang_pairs:
-        # Evaluate both directions: src->tgt and tgt->src
-        for direction_src, direction_tgt in [(src_lang, tgt_lang), (tgt_lang, src_lang)]:
+    for pair_idx, (src_lang, tgt_lang) in enumerate(lang_pairs):
+        if cfg.src_lang:
+            # Parallel mode: only evaluate src_lang -> tgt_lang
+            directions = [(src_lang, tgt_lang)]
+        else:
+            # Original mode: evaluate both directions
+            directions = [(src_lang, tgt_lang), (tgt_lang, src_lang)]
+        
+        for direction_src, direction_tgt in directions:
             
             # Evaluate FLORES
             print("\n" + "=" * 80)
@@ -350,10 +373,6 @@ def run(cfg: EvalConfig) -> int:
                                    f"{bleu:.2f}", f"{chrf:.2f}", comet22_str, kiwi23_str, n])
             except Exception as e:
                 print(f"FAILED FLORES {direction_src}->{direction_tgt}: {e}")
-            
-            # Skip WMT24++ for now due to format limitations
-            # WMT24++ is designed for English-centric evaluation
-            print(f"Skipping WMT24++ for {direction_src}->{direction_tgt} (not supported for non-English pairs)")
 
     print("\nResults saved to:", csv_path)
     return 0
@@ -368,6 +387,8 @@ def parse_args() -> EvalConfig:
     parser.add_argument("--model", default="facebook/nllb-200-3.3B")
     parser.add_argument("--mode", choices=["baseline", "int8", "int4"], default="int4")
     parser.add_argument("--langs", default="deu_Latn,rus_Cyrl,fra_Latn,nld_Latn,pol_Latn,lvs_Latn,zul_Latn,tel_Telu,swh_Latn")
+    parser.add_argument("--src_lang", default=None, 
+                       help="Specific source language to evaluate from (for parallel processing)")
     parser.add_argument("--split", choices=["dev", "devtest"], default="devtest")
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--max_new_tokens", type=int, default=256)
@@ -375,12 +396,19 @@ def parse_args() -> EvalConfig:
     args = parser.parse_args()
 
     langs = [l.strip() for l in args.langs.split(",") if l.strip()]
+    
+    # If src_lang is specified, validate it's in the language list
+    src_lang = args.src_lang
+    if src_lang and src_lang not in langs:
+        raise ValueError(f"Source language '{src_lang}' not found in language list: {langs}")
+    
     return EvalConfig(
         flores_path=args.flores_path,
         wmt24pp_path=args.wmt24pp_path,
         model_id=args.model,
         mode=args.mode,
         langs=langs,
+        src_lang=src_lang,
         split=args.split,
         batch_size=args.batch_size,
         max_new_tokens=args.max_new_tokens,

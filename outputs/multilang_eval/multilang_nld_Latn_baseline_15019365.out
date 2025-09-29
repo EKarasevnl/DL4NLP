@@ -1,0 +1,77 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Logging in to Hugging Face with provided token...
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `hf`CLI if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `Mistral` has been saved to /home/scur1832/.cache/huggingface/stored_tokens
+Your token has been saved to /home/scur1832/.cache/huggingface/token
+Login successful.
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+[33m⚠️  Warning: 'huggingface-cli login' is deprecated. Use 'hf auth login' instead.[0m
+Starting multilingual evaluation for source language: nld_Latn, mode: baseline
+Languages: deu_Latn,rus_Cyrl,fra_Latn,nld_Latn,pol_Latn,lvs_Latn,zul_Latn,tel_Telu,swh_Latn
+FLORES path: /home/scur1832/.cache/huggingface/modules/datasets_modules/datasets/facebook--flores
+WMT24++ path: /home/scur1832/DL4NLP/data/wmt24pp
+We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+============================================================
+ENVIRONMENT
+============================================================
+PyTorch: 2.5.1+cu121
+Transformers: 4.46.0
+Accelerate: 0.30.0
+bitsandbytes: 0.47.0
+CUDA available: True
+CUDA devices: 1
+Device 0: NVIDIA H100
+Capability: (9, 0)
+BF16 supported: True
+HF_HOME: 
+TRANSFORMERS_CACHE: 
+============================================================
+Running evaluation for source language: nld_Latn, mode: baseline
+Dataset paths:
+  FLORES: /home/scur1832/.cache/huggingface/modules/datasets_modules/datasets/facebook--flores
+  WMT24++: /home/scur1832/DL4NLP/data/wmt24pp
+Languages: ['deu_Latn', 'rus_Cyrl', 'fra_Latn', 'nld_Latn', 'pol_Latn', 'lvs_Latn', 'zul_Latn', 'tel_Telu', 'swh_Latn']
+Mode: baseline
+Loading baseline model in dtype=torch.bfloat16 ...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:09<00:18,  9.12s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:24<00:12, 12.81s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:25<00:00,  7.35s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:25<00:00,  8.45s/it]
+Model loaded in 26.6s
+Traceback (most recent call last):
+  File "/gpfs/home1/scur1832/DL4NLP/multilang_eval.py", line 425, in <module>
+    sys.exit(main())
+  File "/gpfs/home1/scur1832/DL4NLP/multilang_eval.py", line 421, in main
+    return run(cfg)
+  File "/gpfs/home1/scur1832/DL4NLP/multilang_eval.py", line 330, in run
+    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
+  File "/gpfs/home1/scur1832/DL4NLP/multilang_eval.py", line 77, in _prepare_model_and_tokenizer
+    model, _ = _load_model_baseline(model_id, dtype)
+TypeError: cannot unpack non-iterable M2M100ForConditionalGeneration object
+Done. Scores written to outputs/multilang_eval/multilang_scores_nld_Latn_baseline.csv
+
+JOB STATISTICS
+==============
+Job ID: 15019365
+Cluster: snellius
+User/Group: scur1832/scur1832
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:02:04
+CPU Efficiency: 18.02% of 00:11:28 core-walltime
+Job Wall-clock time: 00:00:43
+Memory Utilized: 4.88 GB
+Memory Efficiency: 3.82% of 128.00 GB (128.00 GB/node)

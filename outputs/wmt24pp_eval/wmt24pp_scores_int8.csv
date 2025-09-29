@@ -1,0 +1,4 @@
+lang,direction,mode,split,bleu,chrf,comet22,kiwi23,num_sentences
+de,en2x,int8,test,25.33,51.99,0.7564,0.6491,960
+de,x2en,int8,test,31.19,56.50,0.8111,0.7855,960
+ru,en2x,int8,test,20.48,45.38,0.7651,0.6344,960

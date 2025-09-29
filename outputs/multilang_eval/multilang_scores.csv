@@ -1,3 +1,1 @@
 src_lang,tgt_lang,dataset,mode,split,bleu,chrf,comet22,kiwi23,n_samples
-deu_Latn,rus_Cyrl,flores,int4,devtest,24.47,52.05,0.8755,0.8604,1012
-rus_Cyrl,deu_Latn,flores,int4,devtest,24.46,53.63,0.8309,0.7800,1012
