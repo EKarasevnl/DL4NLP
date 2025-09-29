@@ -1,0 +1,212 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Requirement already satisfied: unbabel-comet>=2.1.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (2.2.7)
+Requirement already satisfied: entmax<2.0,>=1.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (1.3)
+Requirement already satisfied: huggingface-hub<1.0,>=0.19.3 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (0.35.2)
+Requirement already satisfied: jsonargparse==3.13.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (3.13.1)
+Requirement already satisfied: numpy<2.0.0,>=1.20.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (1.26.4)
+Requirement already satisfied: pandas>=1.4.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (2.3.2)
+Requirement already satisfied: protobuf<5.0.0,>=4.24.4 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (4.25.8)
+Requirement already satisfied: pytorch-lightning<3.0.0,>=2.0.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (2.5.5)
+Requirement already satisfied: sacrebleu<3.0.0,>=2.0.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (2.4.0)
+Requirement already satisfied: scipy<2.0.0,>=1.5.4 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (1.15.3)
+Requirement already satisfied: sentencepiece<0.3.0,>=0.2.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (0.2.0)
+Requirement already satisfied: torch>=1.6.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (2.5.1+cu121)
+Requirement already satisfied: torchmetrics<0.11.0,>=0.10.2 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (0.10.3)
+Requirement already satisfied: transformers<5.0,>=4.17 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from unbabel-comet>=2.1.0) (4.46.0)
+Requirement already satisfied: PyYAML>=3.13 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from jsonargparse==3.13.1->unbabel-comet>=2.1.0) (6.0.3)
+Requirement already satisfied: filelock in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (3.13.1)
+Requirement already satisfied: fsspec>=2023.5.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (2024.3.1)
+Requirement already satisfied: packaging>=20.9 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (25.0)
+Requirement already satisfied: requests in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (2.32.5)
+Requirement already satisfied: tqdm>=4.42.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (4.67.1)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (4.12.2)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (1.1.10)
+Requirement already satisfied: lightning-utilities>=0.10.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (0.15.2)
+Requirement already satisfied: portalocker in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (3.2.0)
+Requirement already satisfied: regex in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (2025.9.18)
+Requirement already satisfied: tabulate>=0.8.9 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (0.9.0)
+Requirement already satisfied: colorama in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (0.4.6)
+Requirement already satisfied: lxml in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sacrebleu<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (6.0.2)
+Requirement already satisfied: safetensors>=0.4.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from transformers<5.0,>=4.17->unbabel-comet>=2.1.0) (0.6.2)
+Requirement already satisfied: tokenizers<0.21,>=0.20 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from transformers<5.0,>=4.17->unbabel-comet>=2.1.0) (0.20.3)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (3.12.15)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (1.4.0)
+Requirement already satisfied: async-timeout<6.0,>=4.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (5.0.1)
+Requirement already satisfied: attrs>=17.3.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (6.6.4)
+Requirement already satisfied: propcache>=0.2.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (1.20.1)
+Requirement already satisfied: idna>=2.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from yarl<2.0,>=1.17.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]>=2022.5.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (3.10)
+Requirement already satisfied: setuptools in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from lightning-utilities>=0.10.0->pytorch-lightning<3.0.0,>=2.0.0->unbabel-comet>=2.1.0) (78.1.1)
+Requirement already satisfied: python-dateutil>=2.8.2 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from pandas>=1.4.1->unbabel-comet>=2.1.0) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from pandas>=1.4.1->unbabel-comet>=2.1.0) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from pandas>=1.4.1->unbabel-comet>=2.1.0) (2025.2)
+Requirement already satisfied: six>=1.5 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from python-dateutil>=2.8.2->pandas>=1.4.1->unbabel-comet>=2.1.0) (1.17.0)
+Requirement already satisfied: networkx in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (3.3)
+Requirement already satisfied: jinja2 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (3.1.4)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.21.5 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (2.21.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (12.1.105)
+Requirement already satisfied: triton==3.1.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (3.1.0)
+Requirement already satisfied: sympy==1.13.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.6.0->unbabel-comet>=2.1.0) (1.13.1)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.6.0->unbabel-comet>=2.1.0) (12.9.86)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sympy==1.13.1->torch>=1.6.0->unbabel-comet>=2.1.0) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from jinja2->torch>=1.6.0->unbabel-comet>=2.1.0) (2.1.5)
+Requirement already satisfied: charset_normalizer<4,>=2 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (3.4.3)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from requests->huggingface-hub<1.0,>=0.19.3->unbabel-comet>=2.1.0) (2025.8.3)
+Logging in to Hugging Face with provided token...
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `hf`CLI if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `Mistral` has been saved to /home/scur1832/.cache/huggingface/stored_tokens
+Your token has been saved to /home/scur1832/.cache/huggingface/token
+Login successful.
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+[33m⚠️  Warning: 'huggingface-cli login' is deprecated. Use 'hf auth login' instead.[0m
+/var/spool/slurm/slurmd/job15013950/slurm_script: line 41: cd: /home/scur1843/DL4NLP: Permission denied
+==========================================
+NLLB-200-3.3B Final Test Job
+Job ID: 15013950
+Node: gcn97
+GPU: 0
+Partition: gpu_h100
+Memory: 131072 MB
+==========================================
+PyTorch: 2.5.1+cu121
+CUDA available: True
+Device count: 1
+Current device: 0
+Device name: NVIDIA H100
+BF16 supported: True
+============================================================
+ENVIRONMENT
+============================================================
+PyTorch: 2.5.1+cu121
+Transformers: 4.46.0
+Accelerate: 0.30.0
+bitsandbytes: 0.47.0
+CUDA available: True
+CUDA devices: 1
+Device 0: NVIDIA H100
+Capability: (9, 0)
+BF16 supported: True
+HF_HOME: 
+TRANSFORMERS_CACHE: 
+============================================================
+Using device: cuda -> NVIDIA H100
+
+============================================================
+MODE: BASELINE
+============================================================
+Loading baseline model in dtype=torch.bfloat16 ...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:09,  4.95s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:06,  6.88s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.04s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.61s/it]
+Model loaded in 15.6s
+✅ Baseline model loaded.
+Translating [eng_Latn -> spa_Latn]: 'Hello from H100!'
+🟩 Translation (baseline): Hola desde H100!
+[BASELINE] Max CUDA memory allocated: 6.29 GB
+
+============================================================
+MODE: INT8
+============================================================
+Loading 8-bit quantized model (LLM.int8) ...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:10,  5.30s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.21s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  1.87s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.44s/it]
+Model loaded in 8.5s
+✅ 8-bit model loaded.
+Translating [eng_Latn -> spa_Latn]: 'Hello from H100!'
+🟩 Translation (int8): Hola desde H100!
+[INT8] Max CUDA memory allocated: 3.67 GB
+
+============================================================
+MODE: INT4
+============================================================
+Loading 4-bit quantized model (NF4 + double quant) ...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.72s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.21s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.33s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:04<00:00,  1.62s/it]
+Model loaded in 6.2s
+✅ 4-bit model loaded.
+Translating [eng_Latn -> spa_Latn]: 'Hello from H100!'
+🟩 Translation (int4): ¡Hola desde H100!
+[INT4] Max CUDA memory allocated: 2.41 GB
+
+============================================================
+SUMMARY
+============================================================
+Passed 3/3
+🎉 ALL SELECTED MODES PASSED!
+Test COMET installation:
+COMET available
+PyTorch version 2.5.1+cu121 available.
+==================================================
+Testing Additional Metrics Implementation
+==================================================
+Testing imports...
+✓ COMET available
+✓ evaluate library available
+
+Testing metric computation functions...
+✓ Successfully imported _compute_advanced_metrics from flores_eval
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 9008.38it/s]
+Lightning automatically upgraded your loaded checkpoint from v1.8.3.post1 to v2.5.5. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint ../../../../home/scur1832/.cache/huggingface/hub/models--Unbabel--wmt22-comet-da/snapshots/2760a223ac957f30acfb18c8aa649b01cf1d75f2/checkpoints/model.ckpt`
+Encoder model frozen.
+/home/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages/pytorch_lightning/core/saving.py:195: Found keys that are not in the model state dict but in the checkpoint: ['encoder.model.embeddings.position_ids']
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+You are using a CUDA device ('NVIDIA H100') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+SLURM auto-requeueing enabled. Setting signal handlers.
+Predicting: 0it [00:00, ?it/s]Predicting: 0it [00:00, ?it/s]Predicting DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]Predicting DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  3.55it/s]Predicting DataLoader 0: 100%|██████████| 1/1 [00:00<00:00,  3.54it/s]
+Fetching 6 files:   0%|          | 0/6 [00:00<?, ?it/s]Fetching 6 files: 100%|██████████| 6/6 [00:00<00:00, 1883.11it/s]
+💡 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+HPU available: False, using: 0 HPUs
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+SLURM auto-requeueing enabled. Setting signal handlers.
+Predicting: 0it [00:00, ?it/s]Predicting: 0it [00:00, ?it/s]Predicting DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]Predicting DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  1.11s/it]Predicting DataLoader 0: 100%|██████████| 1/1 [00:01<00:00,  1.11s/it]
+✓ Metric computation completed: {'comet22': 0.9797976613044739, 'kiwi23': 0.9658658504486084, 'xl': 0.9953963756561279}
+✓ comet22: 0.9797976613044739
+✓ kiwi23: 0.9658658504486084
+✓ xl: 0.9953963756561279
+
+==================================================
+Test completed
+
+JOB STATISTICS
+==============
+Job ID: 15013950
+Cluster: snellius
+User/Group: scur1832/scur1832
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:05:10
+CPU Efficiency: 8.77% of 00:58:56 core-walltime
+Job Wall-clock time: 00:03:41
+Memory Utilized: 45.47 GB
+Memory Efficiency: 35.52% of 128.00 GB (128.00 GB/node)

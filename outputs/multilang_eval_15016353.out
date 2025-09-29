@@ -1,0 +1,574 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Logging in to Hugging Face with provided token...
+The token has not been saved to the git credentials helper. Pass `add_to_git_credential=True` in this function directly or `--add-to-git-credential` if using via `hf`CLI if you want to set the git credential as well.
+Token is valid (permission: fineGrained).
+The token `Mistral` has been saved to /home/scur1832/.cache/huggingface/stored_tokens
+Your token has been saved to /home/scur1832/.cache/huggingface/token
+Login successful.
+Note: Environment variable`HF_TOKEN` is set and is the current active token independently from the token you've just configured.
+[33m⚠️  Warning: 'huggingface-cli login' is deprecated. Use 'hf auth login' instead.[0m
+Starting multilingual evaluation for non-English language pairs
+Languages: deu_Latn,rus_Cyrl,fra_Latn,nld_Latn,pol_Latn,lvs_Latn,zul_Latn,tel_Telu,swh_Latn
+FLORES path: /home/scur1832/.cache/huggingface/modules/datasets_modules/datasets/facebook--flores
+WMT24++ path: /home/scur1832/DL4NLP/data/wmt24pp
+We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+============================================================
+ENVIRONMENT
+============================================================
+PyTorch: 2.5.1+cu121
+Transformers: 4.46.0
+Accelerate: 0.30.0
+bitsandbytes: 0.47.0
+CUDA available: True
+CUDA devices: 1
+Device 0: NVIDIA H100
+Capability: (9, 0)
+BF16 supported: True
+HF_HOME: 
+TRANSFORMERS_CACHE: 
+============================================================
+Dataset paths:
+  FLORES: /home/scur1832/.cache/huggingface/modules/datasets_modules/datasets/facebook--flores
+  WMT24++: /home/scur1832/DL4NLP/data/wmt24pp
+Languages: ['deu_Latn', 'rus_Cyrl', 'fra_Latn', 'nld_Latn', 'pol_Latn', 'lvs_Latn', 'zul_Latn', 'tel_Telu', 'swh_Latn']
+Mode: int4
+Loading 4-bit quantized model (NF4 + double quant) ...
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:10,  5.29s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:13<00:07,  7.08s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  4.16s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  4.77s/it]
+Model loaded in 16.1s
+
+Evaluating 36 language pairs in both directions...
+
+================================================================================
+FLORES EVAL: deu_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: deu_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES deu_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for deu_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> deu_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->deu_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->deu_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: rus_Cyrl -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES rus_Cyrl->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for rus_Cyrl->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> rus_Cyrl [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->rus_Cyrl: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->rus_Cyrl (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: fra_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES fra_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for fra_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> fra_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->fra_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->fra_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: nld_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES nld_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for nld_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> nld_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->nld_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->nld_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: pol_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES pol_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for pol_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> pol_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->pol_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->pol_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: lvs_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES lvs_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for lvs_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> lvs_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->lvs_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->lvs_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->tel_Telu (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: zul_Latn -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES zul_Latn->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for zul_Latn->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> zul_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->zul_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->zul_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: tel_Telu -> swh_Latn [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES tel_Telu->swh_Latn: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for tel_Telu->swh_Latn (not supported for non-English pairs)
+
+================================================================================
+FLORES EVAL: swh_Latn -> tel_Telu [devtest]
+================================================================================
+Loaded FLORES dataset using 'facebook/flores' configuration
+FAILED FLORES swh_Latn->tel_Telu: 'NllbTokenizerFast' object has no attribute 'lang_code_to_id'
+Skipping WMT24++ for swh_Latn->tel_Telu (not supported for non-English pairs)
+
+Results saved to: outputs/multilang_eval/multilang_scores.csv
+Done. Scores written to outputs/multilang_eval/multilang_scores.csv
+
+JOB STATISTICS
+==============
+Job ID: 15016353
+Cluster: snellius
+User/Group: scur1832/scur1832
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 16
+CPU Utilized: 00:04:05
+CPU Efficiency: 5.28% of 01:17:20 core-walltime
+Job Wall-clock time: 00:04:50
+Memory Utilized: 1.73 GB
+Memory Efficiency: 1.35% of 128.00 GB (128.00 GB/node)

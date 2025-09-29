@@ -1,0 +1,1893 @@
+============================================================================================== 
+Warning! Mixing Conda and module environments may lead to corruption of the
+user environment. 
+We do not recommend users mixing those two environments unless absolutely
+necessary. Note that 
+SURF does not provide any support for Conda environment.
+For more information, please refer to our software policy page:
+https://servicedesk.surf.nl/wiki/display/WIKI/Software+policy+Snellius#SoftwarepolicySnellius-UseofAnacondaandMinicondaenvironmentsonSnellius 
+
+Remember that many packages have already been installed on the system and can
+be loaded using 
+the 'module load <package__name>' command. If you are uncertain if a package is
+already available 
+on the system, please use 'module avail' or 'module spider' to search for it.
+============================================================================================== 
+Lmod has detected the following error: The following module(s) are unknown:
+"CUDA/12.1.0"
+
+Please check the spelling or version number. Also try "module spider ..."
+It is also possible your cache file is out-of-date; it may help to try:
+  $ module --ignore_cache load "CUDA/12.1.0"
+
+Also make sure that all modulefiles written in TCL start with the string
+#%Module
+
+
+
+Collecting package metadata (current_repodata.json): ...working... DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/r/noarch/current_repodata.json HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/noarch/current_repodata.json HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/r/linux-64/current_repodata.json HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/current_repodata.json HTTP/1.1" 200 None
+done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 23.7.2
+  latest version: 25.7.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+Or to minimize the number of packages updated during conda update use
+
+     conda install conda=25.7.0
+
+
+
+## Package Plan ##
+
+  environment location: /home/scur1832/.conda/envs/nllb_final
+
+  added / updated specs:
+    - python=3.10
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    bzip2-1.0.8                |       h5eee18b_6         262 KB
+    ca-certificates-2025.9.9   |       h06a4308_0         127 KB
+    expat-2.7.1                |       h6a678d5_0         182 KB
+    ld_impl_linux-64-2.40      |       h12ee557_0         710 KB
+    libffi-3.4.4               |       h6a678d5_1         141 KB
+    libxcb-1.17.0              |       h9b100fa_0         430 KB
+    libzlib-1.3.1              |       hb25bd0a_0          59 KB
+    ncurses-6.5                |       h7934f7d_0         1.1 MB
+    openssl-3.0.17             |       h5eee18b_0         5.2 MB
+    pip-25.2                   |     pyhc872135_0         1.2 MB
+    pthread-stubs-0.3          |       h0ce48e5_1           5 KB
+    python-3.10.18             |       h1a3bd86_0        26.5 MB
+    readline-8.3               |       hc2a1206_0         471 KB
+    setuptools-78.1.1          |  py310h06a4308_0         1.7 MB
+    sqlite-3.50.2              |       hb25bd0a_1         1.1 MB
+    tk-8.6.15                  |       h54e0aa7_0         3.4 MB
+    tzdata-2025b               |       h04d1e81_0         116 KB
+    wheel-0.45.1               |  py310h06a4308_0         115 KB
+    xorg-libx11-1.8.12         |       h9b100fa_1         895 KB
+    xorg-libxau-1.0.12         |       h9b100fa_0          13 KB
+    xorg-libxdmcp-1.1.5        |       h9b100fa_0          19 KB
+    xorg-xorgproto-2024.1      |       h5eee18b_1         580 KB
+    xz-5.6.4                   |       h5eee18b_1         567 KB
+    zlib-1.3.1                 |       hb25bd0a_0          96 KB
+    ------------------------------------------------------------
+                                           Total:        45.0 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-64::_libgcc_mutex-0.1-main 
+  _openmp_mutex      pkgs/main/linux-64::_openmp_mutex-5.1-1_gnu 
+  bzip2              pkgs/main/linux-64::bzip2-1.0.8-h5eee18b_6 
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2025.9.9-h06a4308_0 
+  expat              pkgs/main/linux-64::expat-2.7.1-h6a678d5_0 
+  ld_impl_linux-64   pkgs/main/linux-64::ld_impl_linux-64-2.40-h12ee557_0 
+  libffi             pkgs/main/linux-64::libffi-3.4.4-h6a678d5_1 
+  libgcc-ng          pkgs/main/linux-64::libgcc-ng-11.2.0-h1234567_1 
+  libgomp            pkgs/main/linux-64::libgomp-11.2.0-h1234567_1 
+  libstdcxx-ng       pkgs/main/linux-64::libstdcxx-ng-11.2.0-h1234567_1 
+  libuuid            pkgs/main/linux-64::libuuid-1.41.5-h5eee18b_0 
+  libxcb             pkgs/main/linux-64::libxcb-1.17.0-h9b100fa_0 
+  libzlib            pkgs/main/linux-64::libzlib-1.3.1-hb25bd0a_0 
+  ncurses            pkgs/main/linux-64::ncurses-6.5-h7934f7d_0 
+  openssl            pkgs/main/linux-64::openssl-3.0.17-h5eee18b_0 
+  pip                pkgs/main/noarch::pip-25.2-pyhc872135_0 
+  pthread-stubs      pkgs/main/linux-64::pthread-stubs-0.3-h0ce48e5_1 
+  python             pkgs/main/linux-64::python-3.10.18-h1a3bd86_0 
+  readline           pkgs/main/linux-64::readline-8.3-hc2a1206_0 
+  setuptools         pkgs/main/linux-64::setuptools-78.1.1-py310h06a4308_0 
+  sqlite             pkgs/main/linux-64::sqlite-3.50.2-hb25bd0a_1 
+  tk                 pkgs/main/linux-64::tk-8.6.15-h54e0aa7_0 
+  tzdata             pkgs/main/noarch::tzdata-2025b-h04d1e81_0 
+  wheel              pkgs/main/linux-64::wheel-0.45.1-py310h06a4308_0 
+  xorg-libx11        pkgs/main/linux-64::xorg-libx11-1.8.12-h9b100fa_1 
+  xorg-libxau        pkgs/main/linux-64::xorg-libxau-1.0.12-h9b100fa_0 
+  xorg-libxdmcp      pkgs/main/linux-64::xorg-libxdmcp-1.1.5-h9b100fa_0 
+  xorg-xorgproto     pkgs/main/linux-64::xorg-xorgproto-2024.1-h5eee18b_1 
+  xz                 pkgs/main/linux-64::xz-5.6.4-h5eee18b_1 
+  zlib               pkgs/main/linux-64::zlib-1.3.1-hb25bd0a_0 
+
+
+
+Downloading and Extracting Packages
+sqlite-3.50.2        | 1.1 MB    |            |   0% 
+pip-25.2             | 1.2 MB    |            |   0% [A
+
+bzip2-1.0.8          | 262 KB    |            |   0% [A[A
+
+
+libxcb-1.17.0        | 430 KB    |            |   0% DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+
+
+
+expat-2.7.1          | 182 KB    |            |   0% [A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+
+
+
+
+xorg-xorgproto-2024. | 580 KB    |            |   0% [A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 710 KB    |            |   0% DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+[A[A[A[A[A[A
+
+
+
+
+
+
+libffi-3.4.4         | 141 KB    |            |   0% [A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+
+
+
+
+
+
+
+zlib-1.3.1           | 96 KB     |            |   0% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+openssl-3.0.17       | 5.2 MB    |            |   0% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+tzdata-2025b         | 116 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xorg-libx11-1.8.12   | 895 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 127 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+xz-5.6.4             | 567 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+tk-8.6.15            | 3.4 MB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wheel-0.45.1         | 115 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxdmcp-1.1.5  | 19 KB     |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxau-1.0.12   | 13 KB     |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libxcb-1.17.0-h9b100fa_0.conda HTTP/1.1" 200 440690
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/noarch/pip-25.2-pyhc872135_0.conda HTTP/1.1" 200 1265880
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/bzip2-1.0.8-h5eee18b_6.conda HTTP/1.1" 200 268384
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/expat-2.7.1-h6a678d5_0.conda HTTP/1.1" 200 185917
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/sqlite-3.50.2-hb25bd0a_1.conda HTTP/1.1" 200 1151016
+sqlite-3.50.2        | 1.1 MB    | #8         |  19% DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/xorg-xorgproto-2024.1-h5eee18b_1.conda HTTP/1.1" 200 594175
+
+
+
+
+
+xorg-xorgproto-2024. | 580 KB    | 2          |   3% [A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/ld_impl_linux-64-2.40-h12ee557_0.conda HTTP/1.1" 200 726762
+
+
+
+
+
+
+ld_impl_linux-64-2.4 | 710 KB    | 2          |   2% [A[A[A[A[A[A
+
+
+
+expat-2.7.1          | 182 KB    | ########## | 100% [A[A[A[A
+
+
+
+expat-2.7.1          | 182 KB    | ########## | 100% [A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libffi-3.4.4-h6a678d5_1.conda HTTP/1.1" 200 144691
+
+
+
+
+
+
+
+libffi-3.4.4         | 141 KB    | #1         |  11% [A[A[A[A[A[A[A
+
+bzip2-1.0.8          | 262 KB    | ########## | 100% [A[A
+
+bzip2-1.0.8          | 262 KB    | ########## | 100% [A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/zlib-1.3.1-hb25bd0a_0.conda HTTP/1.1" 200 98150
+
+
+
+
+
+
+
+
+zlib-1.3.1           | 96 KB     | #6         |  17% [A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/openssl-3.0.17-h5eee18b_0.conda HTTP/1.1" 200 5465379
+
+
+
+
+
+
+
+
+
+openssl-3.0.17       | 5.2 MB    |            |   0% [A[A[A[A[A[A[A[A[Asqlite-3.50.2        | 1.1 MB    | ########## | 100% DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/xorg-libx11-1.8.12-h9b100fa_1.conda HTTP/1.1" 200 916212
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/noarch/tzdata-2025b-h04d1e81_0.conda HTTP/1.1" 200 119222
+
+
+
+
+
+
+
+
+
+
+tzdata-2025b         | 116 KB    | #3         |  14% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xorg-libx11-1.8.12   | 895 KB    | 1          |   2% [A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/xz-5.6.4-h5eee18b_1.conda HTTP/1.1" 200 580311
+
+
+
+
+
+
+
+
+
+
+
+
+
+xz-5.6.4             | 567 KB    | 2          |   3% [A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/ca-certificates-2025.9.9-h06a4308_0.conda HTTP/1.1" 200 129696
+
+
+
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 127 KB    | #2         |  13% [A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/tk-8.6.15-h54e0aa7_0.conda HTTP/1.1" 200 3610181
+
+
+
+libxcb-1.17.0        | 430 KB    | ########## | 100% [A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+tk-8.6.15            | 3.4 MB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+libxcb-1.17.0        | 430 KB    | ########## | 100% [A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/wheel-0.45.1-py310h06a4308_0.conda HTTP/1.1" 200 117393
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wheel-0.45.1         | 115 KB    | #3         |  14% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/readline-8.3-hc2a1206_0.conda HTTP/1.1" 200 481826
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | 3          |   3% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/xorg-libxdmcp-1.1.5-h9b100fa_0.conda HTTP/1.1" 200 19260
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxdmcp-1.1.5  | 19 KB     | ########5  |  85% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/xorg-libxau-1.0.12-h9b100fa_0.conda HTTP/1.1" 200 13582
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxau-1.0.12   | 13 KB     | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/python-3.10.18-h1a3bd86_0.conda HTTP/1.1" 200 27836279
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libzlib-1.3.1-hb25bd0a_0.conda HTTP/1.1" 200 60697
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/setuptools-78.1.1-py310h06a4308_0.conda HTTP/1.1" 200 1781079
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/ncurses-6.5-h7934f7d_0.conda HTTP/1.1" 200 1137647
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/pthread-stubs-0.3-h0ce48e5_1.conda HTTP/1.1" 200 5360
+
+
+
+
+
+
+
+libffi-3.4.4         | 141 KB    | ########## | 100% [A[A[A[A[A[A[A
+
+
+
+
+
+
+libffi-3.4.4         | 141 KB    | ########## | 100% [A[A[A[A[A[A[A
+
+
+
+
+xorg-xorgproto-2024. | 580 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+xorg-xorgproto-2024. | 580 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+
+
+
+zlib-1.3.1           | 96 KB     | ########## | 100% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+zlib-1.3.1           | 96 KB     | ########## | 100% [A[A[A[A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 710 KB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+ld_impl_linux-64-2.4 | 710 KB    | ########## | 100% [A[A[A[A[A[A
+pip-25.2             | 1.2 MB    | ########## | 100% [A
+pip-25.2             | 1.2 MB    | ########## | 100% [A
+
+
+
+
+
+
+
+
+
+
+xorg-libx11-1.8.12   | 895 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+xorg-libx11-1.8.12   | 895 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 127 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 127 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+xz-5.6.4             | 567 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+xz-5.6.4             | 567 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wheel-0.45.1         | 115 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+wheel-0.45.1         | 115 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+readline-8.3         | 471 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+openssl-3.0.17       | 5.2 MB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+openssl-3.0.17       | 5.2 MB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxdmcp-1.1.5  | 19 KB     | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+xorg-libxau-1.0.12   | 13 KB     | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+tzdata-2025b         | 116 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+tzdata-2025b         | 116 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ... (more hidden) ...[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+tk-8.6.15            | 3.4 MB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+tk-8.6.15            | 3.4 MB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                      [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A                                                     
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+
+
+
+
+
+                                                     [A[A[A[A[A[A
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A[A
+[A
+
+[A[A
+
+
+[A[A[A
+
+
+
+[A[A[A[A
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate nllb_final
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting package metadata (current_repodata.json): ...working... DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): conda.anaconda.org:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): conda.anaconda.org:443
+DEBUG:urllib3.connectionpool:https://conda.anaconda.org:443 "GET /conda-forge/noarch/current_repodata.json HTTP/1.1" 200 None
+DEBUG:urllib3.connectionpool:https://conda.anaconda.org:443 "GET /conda-forge/linux-64/current_repodata.json HTTP/1.1" 200 None
+done
+Solving environment: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 23.7.2
+  latest version: 25.7.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+Or to minimize the number of packages updated during conda update use
+
+     conda install conda=25.7.0
+
+
+
+## Package Plan ##
+
+  environment location: /home/scur1832/.conda/envs/nllb_final
+
+  added / updated specs:
+    - cmake
+    - ninja
+    - packaging
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    c-ares-1.34.5              |       hef5626c_0         216 KB
+    ca-certificates-2025.8.3   |       hbd8a1cb_0         151 KB  conda-forge
+    cmake-3.31.2               |       h27e300b_0        20.9 MB
+    libcurl-8.15.0             |       hc1efc7f_0         498 KB
+    libev-4.33                 |       h516909a_1         104 KB  conda-forge
+    libnghttp2-1.57.0          |       h2d74bed_0         674 KB
+    libssh2-1.11.1             |       h251f7ec_0         308 KB
+    libuv-1.48.0               |       h5eee18b_0         950 KB
+    lz4-c-1.9.4                |       h6a678d5_1         156 KB
+    ninja-1.12.1               |       h06a4308_0           8 KB
+    ninja-base-1.12.1          |       hdb19cb5_0         157 KB
+    packaging-25.0             |     pyh29332c3_1          61 KB  conda-forge
+    rhash-1.4.3                |       hdbd6064_0         220 KB
+    zstd-1.5.7                 |       h11fc155_0         608 KB
+    ------------------------------------------------------------
+                                           Total:        24.9 MB
+
+The following NEW packages will be INSTALLED:
+
+  c-ares             pkgs/main/linux-64::c-ares-1.34.5-hef5626c_0 
+  cmake              pkgs/main/linux-64::cmake-3.31.2-h27e300b_0 
+  libcurl            pkgs/main/linux-64::libcurl-8.15.0-hc1efc7f_0 
+  libev              conda-forge/linux-64::libev-4.33-h516909a_1 
+  libnghttp2         pkgs/main/linux-64::libnghttp2-1.57.0-h2d74bed_0 
+  libssh2            pkgs/main/linux-64::libssh2-1.11.1-h251f7ec_0 
+  libuv              pkgs/main/linux-64::libuv-1.48.0-h5eee18b_0 
+  lz4-c              pkgs/main/linux-64::lz4-c-1.9.4-h6a678d5_1 
+  ninja              pkgs/main/linux-64::ninja-1.12.1-h06a4308_0 
+  ninja-base         pkgs/main/linux-64::ninja-base-1.12.1-hdb19cb5_0 
+  packaging          conda-forge/noarch::packaging-25.0-pyh29332c3_1 
+  rhash              pkgs/main/linux-64::rhash-1.4.3-hdbd6064_0 
+  zstd               pkgs/main/linux-64::zstd-1.5.7-h11fc155_0 
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    pkgs/main/linux-64::ca-certificates-2~ --> conda-forge/noarch::ca-certificates-2025.8.3-hbd8a1cb_0 
+
+
+
+Downloading and Extracting Packages
+c-ares-1.34.5        | 216 KB    |            |   0% 
+cmake-3.31.2         | 20.9 MB   |            |   0% [A
+
+libcurl-8.15.0       | 498 KB    |            |   0% [A[A
+
+
+zstd-1.5.7           | 608 KB    |            |   0% [A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+
+
+
+packaging-25.0       | 61 KB     |            |   0% DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+[A[A[A[A
+
+
+
+
+libssh2-1.11.1       | 308 KB    |            |   0% [A[A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+
+
+
+
+
+libuv-1.48.0         | 950 KB    |            |   0% [A[A[A[A[A[A
+
+
+
+
+
+
+rhash-1.4.3          | 220 KB    |            |   0% [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+ninja-1.12.1         | 8 KB      |            |   0% [A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): conda.anaconda.org:443
+
+
+
+
+
+
+
+
+
+ninja-base-1.12.1    | 157 KB    |            |   0% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 151 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+lz4-c-1.9.4          | 156 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+libev-4.33           | 104 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+libnghttp2-1.57.0    | 674 KB    |            |   0% [A[A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/c-ares-1.34.5-hef5626c_0.conda HTTP/1.1" 200 220802
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/cmake-3.31.2-h27e300b_0.conda HTTP/1.1" 200 21896546
+DEBUG:urllib3.connectionpool:https://conda.anaconda.org:443 "GET /conda-forge/noarch/packaging-25.0-pyh29332c3_1.conda HTTP/1.1" 200 62477
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libcurl-8.15.0-hc1efc7f_0.conda HTTP/1.1" 200 510299
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): repo.anaconda.com:443
+
+cmake-3.31.2         | 20.9 MB   | 4          |   4% [ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/zstd-1.5.7-h11fc155_0.conda HTTP/1.1" 200 622604
+
+
+
+zstd-1.5.7           | 608 KB    | 2          |   3% [A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libssh2-1.11.1-h251f7ec_0.conda HTTP/1.1" 200 315187
+
+
+
+
+
+libssh2-1.11.1       | 308 KB    | 5          |   5% [A[A[A[A[A
+
+
+
+packaging-25.0       | 61 KB     | ########## | 100% [A[A[A[A
+
+
+
+packaging-25.0       | 61 KB     | ########## | 100% [A[A[A[A
+
+libcurl-8.15.0       | 498 KB    | ########## | 100% [A[A
+
+libcurl-8.15.0       | 498 KB    | ########## | 100% [A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/rhash-1.4.3-hdbd6064_0.conda HTTP/1.1" 200 225598
+
+
+
+
+
+
+
+rhash-1.4.3          | 220 KB    | 7          |   7% [A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): conda.anaconda.org:443
+DEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libuv-1.48.0-h5eee18b_0.conda HTTP/1.1" 200 972991
+
+
+
+
+
+
+libuv-1.48.0         | 950 KB    | 1          |   2% [A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/ninja-base-1.12.1-hdb19cb5_0.conda HTTP/1.1" 200 160393
+
+
+
+
+
+
+
+
+
+ninja-base-1.12.1    | 157 KB    | #          |  10% [A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): conda.anaconda.org:443
+
+cmake-3.31.2         | 20.9 MB   | ####4      |  45% [A
+
+
+zstd-1.5.7           | 608 KB    | ########## | 100% [A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/ninja-1.12.1-h06a4308_0.conda HTTP/1.1" 200 8520
+
+
+
+
+
+
+
+
+ninja-1.12.1         | 8 KB      | ########## | 100% [A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://conda.anaconda.org:443 "GET /conda-forge/noarch/ca-certificates-2025.8.3-hbd8a1cb_0.conda HTTP/1.1" 200 154402
+
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 151 KB    | #          |  11% [A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/lz4-c-1.9.4-h6a678d5_1.conda HTTP/1.1" 200 159495
+
+
+
+
+
+
+
+
+
+
+
+lz4-c-1.9.4          | 156 KB    | #          |  10% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+rhash-1.4.3          | 220 KB    | ########## | 100% [A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://conda.anaconda.org:443 "GET /conda-forge/linux-64/libev-4.33-h516909a_1.tar.bz2 HTTP/1.1" 200 106190
+
+
+
+
+
+
+
+
+
+
+
+
+libev-4.33           | 104 KB    | #5         |  15% [A[A[A[A[A[A[A[A[A[A[A[ADEBUG:urllib3.connectionpool:https://repo.anaconda.com:443 "GET /pkgs/main/linux-64/libnghttp2-1.57.0-h2d74bed_0.conda HTTP/1.1" 200 690359
+
+
+
+
+
+
+
+
+
+
+
+
+
+libnghttp2-1.57.0    | 674 KB    | 2          |   2% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+libuv-1.48.0         | 950 KB    | ########## | 100% [A[A[A[A[A[A
+
+
+
+
+
+libuv-1.48.0         | 950 KB    | ########## | 100% [A[A[A[A[A[A
+cmake-3.31.2         | 20.9 MB   | ########5  |  86% [Ac-ares-1.34.5        | 216 KB    | ########## | 100% c-ares-1.34.5        | 216 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+ninja-base-1.12.1    | 157 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+ninja-base-1.12.1    | 157 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+ninja-1.12.1         | 8 KB      | ########## | 100% [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 151 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+ca-certificates-2025 | 151 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+lz4-c-1.9.4          | 156 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+libssh2-1.11.1       | 308 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+libssh2-1.11.1       | 308 KB    | ########## | 100% [A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+libev-4.33           | 104 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+libev-4.33           | 104 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+libnghttp2-1.57.0    | 674 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+libnghttp2-1.57.0    | 674 KB    | ########## | 100% [A[A[A[A[A[A[A[A[A[A[A[A[A
+cmake-3.31.2         | 20.9 MB   | ########## | 100% [A                                                     
+                                                     [A
+
+                                                     [A[A
+
+
+                                                     [A[A[A
+
+
+
+                                                     [A[A[A[A
+
+
+
+
+                                                     [A[A[A[A[A
+
+
+
+
+
+                                                     [A[A[A[A[A[A
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A
+
+
+
+
+
+
+
+
+
+
+
+
+                                                     [A[A[A[A[A[A[A[A[A[A[A[A[A
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Looking in indexes: https://download.pytorch.org/whl/cu121
+Collecting torch==2.5.1+cu121
+  Downloading https://download.pytorch.org/whl/cu121/torch-2.5.1%2Bcu121-cp310-cp310-linux_x86_64.whl (780.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 780.4/780.4 MB 30.1 MB/s  0:00:09
+Collecting filelock (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/filelock-3.13.1-py3-none-any.whl.metadata (2.8 kB)
+Collecting typing-extensions>=4.8.0 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/typing_extensions-4.12.2-py3-none-any.whl.metadata (3.0 kB)
+Collecting networkx (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/networkx-3.3-py3-none-any.whl.metadata (5.1 kB)
+Collecting jinja2 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/Jinja2-3.1.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting fsspec (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/fsspec-2024.6.1-py3-none-any.whl.metadata (11 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.1.105 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_nvrtc_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (23.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 23.7/23.7 MB 67.2 MB/s  0:00:00
+Collecting nvidia-cuda-runtime-cu12==12.1.105 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_runtime_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (823 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 823.6/823.6 kB 67.4 MB/s  0:00:00
+Collecting nvidia-cuda-cupti-cu12==12.1.105 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cuda_cupti_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (14.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 14.1/14.1 MB 218.9 MB/s  0:00:00
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 16.7 MB/s  0:00:16
+Collecting nvidia-cublas-cu12==12.1.3.1 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cublas_cu12-12.1.3.1-py3-none-manylinux1_x86_64.whl (410.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 410.6/410.6 MB 41.5 MB/s  0:00:06
+Collecting nvidia-cufft-cu12==11.0.2.54 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cufft_cu12-11.0.2.54-py3-none-manylinux1_x86_64.whl (121.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 121.6/121.6 MB 23.0 MB/s  0:00:05
+Collecting nvidia-curand-cu12==10.3.2.106 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_curand_cu12-10.3.2.106-py3-none-manylinux1_x86_64.whl (56.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.5/56.5 MB 33.5 MB/s  0:00:01
+Collecting nvidia-cusolver-cu12==11.4.5.107 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cusolver_cu12-11.4.5.107-py3-none-manylinux1_x86_64.whl (124.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 124.2/124.2 MB 34.4 MB/s  0:00:03
+Collecting nvidia-cusparse-cu12==12.1.0.106 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_cusparse_cu12-12.1.0.106-py3-none-manylinux1_x86_64.whl (196.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 196.0/196.0 MB 24.7 MB/s  0:00:07
+Collecting nvidia-nccl-cu12==2.21.5 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl (188.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.7/188.7 MB 24.6 MB/s  0:00:07
+Collecting nvidia-nvtx-cu12==12.1.105 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/cu121/nvidia_nvtx_cu12-12.1.105-py3-none-manylinux1_x86_64.whl (99 kB)
+Collecting triton==3.1.0 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/triton-3.1.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (209.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 209.5/209.5 MB 31.3 MB/s  0:00:06
+Collecting sympy==1.13.1 (from torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/sympy-1.13.1-py3-none-any.whl (6.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 176.4 MB/s  0:00:00
+Collecting nvidia-nvjitlink-cu12 (from nvidia-cusolver-cu12==11.4.5.107->torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/nvidia_nvjitlink_cu12-12.9.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/mpmath-1.3.0-py3-none-any.whl (536 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 32.4 MB/s  0:00:00
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.5.1+cu121)
+  Downloading https://download.pytorch.org/whl/MarkupSafe-2.1.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (25 kB)
+Downloading https://download.pytorch.org/whl/typing_extensions-4.12.2-py3-none-any.whl (37 kB)
+Downloading https://download.pytorch.org/whl/filelock-3.13.1-py3-none-any.whl (11 kB)
+Downloading https://download.pytorch.org/whl/fsspec-2024.6.1-py3-none-any.whl (177 kB)
+Downloading https://download.pytorch.org/whl/Jinja2-3.1.4-py3-none-any.whl (133 kB)
+Downloading https://download.pytorch.org/whl/networkx-3.3-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 130.8 MB/s  0:00:00
+Downloading https://download.pytorch.org/whl/nvidia_nvjitlink_cu12-12.9.86-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.7/39.7 MB 8.8 MB/s  0:00:04
+Installing collected packages: mpmath, typing-extensions, sympy, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, networkx, MarkupSafe, fsspec, filelock, triton, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, nvidia-cusolver-cu12, torch
+
+Successfully installed MarkupSafe-2.1.5 filelock-3.13.1 fsspec-2024.6.1 jinja2-3.1.4 mpmath-1.3.0 networkx-3.3 nvidia-cublas-cu12-12.1.3.1 nvidia-cuda-cupti-cu12-12.1.105 nvidia-cuda-nvrtc-cu12-12.1.105 nvidia-cuda-runtime-cu12-12.1.105 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.0.2.54 nvidia-curand-cu12-10.3.2.106 nvidia-cusolver-cu12-11.4.5.107 nvidia-cusparse-cu12-12.1.0.106 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.9.86 nvidia-nvtx-cu12-12.1.105 sympy-1.13.1 torch-2.5.1+cu121 triton-3.1.0 typing-extensions-4.12.2
+Collecting transformers==4.46.0
+  Downloading transformers-4.46.0-py3-none-any.whl.metadata (44 kB)
+Collecting accelerate==0.30.0
+  Downloading accelerate-0.30.0-py3-none-any.whl.metadata (19 kB)
+Collecting datasets==2.19.0
+  Downloading datasets-2.19.0-py3-none-any.whl.metadata (19 kB)
+Collecting sentencepiece==0.2.0
+  Downloading sentencepiece-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting sacrebleu==2.4.0
+  Downloading sacrebleu-2.4.0-py3-none-any.whl.metadata (57 kB)
+Collecting sacremoses==0.1.1
+  Downloading sacremoses-0.1.1-py3-none-any.whl.metadata (8.3 kB)
+Collecting bitsandbytes==0.44.1
+  Downloading bitsandbytes-0.44.1-py3-none-manylinux_2_24_x86_64.whl.metadata (3.5 kB)
+Collecting huggingface_hub>=0.24.0
+  Downloading huggingface_hub-0.35.2-py3-none-any.whl.metadata (14 kB)
+Collecting psutil
+  Downloading psutil-7.1.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (23 kB)
+Collecting tqdm
+  Downloading tqdm-4.67.1-py3-none-any.whl.metadata (57 kB)
+Requirement already satisfied: filelock in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from transformers==4.46.0) (3.13.1)
+Collecting numpy>=1.17 (from transformers==4.46.0)
+  Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Requirement already satisfied: packaging>=20.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from transformers==4.46.0) (25.0)
+Collecting pyyaml>=5.1 (from transformers==4.46.0)
+  Downloading pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting regex!=2019.12.17 (from transformers==4.46.0)
+  Downloading regex-2025.9.18-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting requests (from transformers==4.46.0)
+  Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting safetensors>=0.4.1 (from transformers==4.46.0)
+  Downloading safetensors-0.6.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Collecting tokenizers<0.21,>=0.20 (from transformers==4.46.0)
+  Downloading tokenizers-0.20.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.7 kB)
+Requirement already satisfied: torch>=1.10.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from accelerate==0.30.0) (2.5.1+cu121)
+Collecting pyarrow>=12.0.0 (from datasets==2.19.0)
+  Downloading pyarrow-21.0.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (3.3 kB)
+Collecting pyarrow-hotfix (from datasets==2.19.0)
+  Downloading pyarrow_hotfix-0.7-py3-none-any.whl.metadata (3.6 kB)
+Collecting dill<0.3.9,>=0.3.0 (from datasets==2.19.0)
+  Downloading dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Collecting pandas (from datasets==2.19.0)
+  Downloading pandas-2.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
+Collecting xxhash (from datasets==2.19.0)
+  Downloading xxhash-3.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multiprocess (from datasets==2.19.0)
+  Downloading multiprocess-0.70.18-py310-none-any.whl.metadata (7.5 kB)
+Collecting fsspec<=2024.3.1,>=2023.1.0 (from fsspec[http]<=2024.3.1,>=2023.1.0->datasets==2.19.0)
+  Downloading fsspec-2024.3.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting aiohttp (from datasets==2.19.0)
+  Downloading aiohttp-3.12.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Collecting portalocker (from sacrebleu==2.4.0)
+  Downloading portalocker-3.2.0-py3-none-any.whl.metadata (8.7 kB)
+Collecting tabulate>=0.8.9 (from sacrebleu==2.4.0)
+  Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Collecting colorama (from sacrebleu==2.4.0)
+  Downloading colorama-0.4.6-py2.py3-none-any.whl.metadata (17 kB)
+Collecting lxml (from sacrebleu==2.4.0)
+  Downloading lxml-6.0.2-cp310-cp310-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl.metadata (3.6 kB)
+Collecting click (from sacremoses==0.1.1)
+  Downloading click-8.3.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting joblib (from sacremoses==0.1.1)
+  Downloading joblib-1.5.2-py3-none-any.whl.metadata (5.6 kB)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from huggingface_hub>=0.24.0) (4.12.2)
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface_hub>=0.24.0)
+  Downloading hf_xet-1.1.10-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.7 kB)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp->datasets==2.19.0)
+  Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp->datasets==2.19.0)
+  Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting async-timeout<6.0,>=4.0 (from aiohttp->datasets==2.19.0)
+  Downloading async_timeout-5.0.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting attrs>=17.3.0 (from aiohttp->datasets==2.19.0)
+  Downloading attrs-25.3.0-py3-none-any.whl.metadata (10 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp->datasets==2.19.0)
+  Downloading frozenlist-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp->datasets==2.19.0)
+  Downloading multidict-6.6.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.0 (from aiohttp->datasets==2.19.0)
+  Downloading propcache-0.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting yarl<2.0,>=1.17.0 (from aiohttp->datasets==2.19.0)
+  Downloading yarl-1.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (73 kB)
+Collecting idna>=2.0 (from yarl<2.0,>=1.17.0->aiohttp->datasets==2.19.0)
+  Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting charset_normalizer<4,>=2 (from requests->transformers==4.46.0)
+  Downloading charset_normalizer-3.4.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (36 kB)
+Collecting urllib3<3,>=1.21.1 (from requests->transformers==4.46.0)
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests->transformers==4.46.0)
+  Downloading certifi-2025.8.3-py3-none-any.whl.metadata (2.4 kB)
+Requirement already satisfied: networkx in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (3.3)
+Requirement already satisfied: jinja2 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (3.1.4)
+Requirement already satisfied: nvidia-cuda-nvrtc-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-runtime-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.105)
+Requirement already satisfied: nvidia-cuda-cupti-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.105)
+Requirement already satisfied: nvidia-cudnn-cu12==9.1.0.70 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (9.1.0.70)
+Requirement already satisfied: nvidia-cublas-cu12==12.1.3.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.3.1)
+Requirement already satisfied: nvidia-cufft-cu12==11.0.2.54 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (11.0.2.54)
+Requirement already satisfied: nvidia-curand-cu12==10.3.2.106 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (10.3.2.106)
+Requirement already satisfied: nvidia-cusolver-cu12==11.4.5.107 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (11.4.5.107)
+Requirement already satisfied: nvidia-cusparse-cu12==12.1.0.106 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.0.106)
+Requirement already satisfied: nvidia-nccl-cu12==2.21.5 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (2.21.5)
+Requirement already satisfied: nvidia-nvtx-cu12==12.1.105 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (12.1.105)
+Requirement already satisfied: triton==3.1.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (3.1.0)
+Requirement already satisfied: sympy==1.13.1 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from torch>=1.10.0->accelerate==0.30.0) (1.13.1)
+Requirement already satisfied: nvidia-nvjitlink-cu12 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from nvidia-cusolver-cu12==11.4.5.107->torch>=1.10.0->accelerate==0.30.0) (12.9.86)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from sympy==1.13.1->torch>=1.10.0->accelerate==0.30.0) (1.3.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /gpfs/home1/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages (from jinja2->torch>=1.10.0->accelerate==0.30.0) (2.1.5)
+INFO: pip is looking at multiple versions of multiprocess to determine which version is compatible with other requirements. This could take a while.
+Collecting multiprocess (from datasets==2.19.0)
+  Downloading multiprocess-0.70.17-py310-none-any.whl.metadata (7.2 kB)
+  Downloading multiprocess-0.70.16-py310-none-any.whl.metadata (7.2 kB)
+Collecting python-dateutil>=2.8.2 (from pandas->datasets==2.19.0)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pytz>=2020.1 (from pandas->datasets==2.19.0)
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas->datasets==2.19.0)
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas->datasets==2.19.0)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+WARNING: The candidate selected for download or install is a yanked version: 'transformers' candidate (version 4.46.0 at https://files.pythonhosted.org/packages/db/88/1ef8a624a33d7fe460a686b9e0194a7916320fc0d67d4e38e570beeac039/transformers-4.46.0-py3-none-any.whl (from https://pypi.org/simple/transformers/) (requires-python:>=3.8.0))
+Reason for being yanked: This version unfortunately does not work with 3.8 but we did not drop the support yet
+Downloading transformers-4.46.0-py3-none-any.whl (10.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.0/10.0 MB 12.6 MB/s  0:00:00
+Downloading accelerate-0.30.0-py3-none-any.whl (302 kB)
+Downloading datasets-2.19.0-py3-none-any.whl (542 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 542.0/542.0 kB 38.0 MB/s  0:00:00
+Downloading sentencepiece-0.2.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 71.5 MB/s  0:00:00
+Downloading sacrebleu-2.4.0-py3-none-any.whl (106 kB)
+Downloading sacremoses-0.1.1-py3-none-any.whl (897 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 897.5/897.5 kB 74.7 MB/s  0:00:00
+Downloading bitsandbytes-0.44.1-py3-none-manylinux_2_24_x86_64.whl (122.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 122.4/122.4 MB 21.4 MB/s  0:00:05
+Downloading huggingface_hub-0.35.2-py3-none-any.whl (564 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 564.1/564.1 kB 48.5 MB/s  0:00:00
+Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+Downloading fsspec-2024.3.1-py3-none-any.whl (171 kB)
+Downloading hf_xet-1.1.10-cp37-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.2/3.2 MB 127.0 MB/s  0:00:00
+Downloading tokenizers-0.20.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 82.6 MB/s  0:00:00
+Downloading psutil-7.1.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (291 kB)
+Downloading tqdm-4.67.1-py3-none-any.whl (78 kB)
+Downloading aiohttp-3.12.15-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 89.1 MB/s  0:00:00
+Downloading async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Downloading multidict-6.6.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (241 kB)
+Downloading yarl-1.20.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (326 kB)
+Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading attrs-25.3.0-py3-none-any.whl (63 kB)
+Downloading frozenlist-1.7.0-cp310-cp310-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (222 kB)
+Downloading idna-3.10-py3-none-any.whl (70 kB)
+Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 20.1 MB/s  0:00:00
+Downloading propcache-0.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (198 kB)
+Downloading pyarrow-21.0.0-cp310-cp310-manylinux_2_28_x86_64.whl (42.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 42.7/42.7 MB 21.8 MB/s  0:00:01
+Downloading pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 770.3/770.3 kB 72.4 MB/s  0:00:00
+Downloading regex-2025.9.18-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (789 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 789.9/789.9 kB 72.5 MB/s  0:00:00
+Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (152 kB)
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Downloading certifi-2025.8.3-py3-none-any.whl (161 kB)
+Downloading safetensors-0.6.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (485 kB)
+Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
+Downloading click-8.3.0-py3-none-any.whl (107 kB)
+Downloading colorama-0.4.6-py2.py3-none-any.whl (25 kB)
+Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Downloading lxml-6.0.2-cp310-cp310-manylinux_2_26_x86_64.manylinux_2_28_x86_64.whl (5.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.3/5.3 MB 122.8 MB/s  0:00:00
+Downloading multiprocess-0.70.16-py310-none-any.whl (134 kB)
+Downloading pandas-2.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 17.7 MB/s  0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Downloading portalocker-3.2.0-py3-none-any.whl (22 kB)
+Downloading pyarrow_hotfix-0.7-py3-none-any.whl (7.9 kB)
+Downloading xxhash-3.5.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+Installing collected packages: sentencepiece, pytz, xxhash, urllib3, tzdata, tqdm, tabulate, six, safetensors, regex, pyyaml, pyarrow-hotfix, pyarrow, psutil, propcache, portalocker, numpy, multidict, lxml, joblib, idna, hf-xet, fsspec, frozenlist, dill, colorama, click, charset_normalizer, certifi, attrs, async-timeout, aiohappyeyeballs, yarl, sacremoses, sacrebleu, requests, python-dateutil, multiprocess, aiosignal, pandas, huggingface_hub, aiohttp, tokenizers, bitsandbytes, accelerate, transformers, datasets
+  Attempting uninstall: fsspec
+    Found existing installation: fsspec 2024.6.1
+    Uninstalling fsspec-2024.6.1:
+      Successfully uninstalled fsspec-2024.6.1
+
+Successfully installed accelerate-0.30.0 aiohappyeyeballs-2.6.1 aiohttp-3.12.15 aiosignal-1.4.0 async-timeout-5.0.1 attrs-25.3.0 bitsandbytes-0.44.1 certifi-2025.8.3 charset_normalizer-3.4.3 click-8.3.0 colorama-0.4.6 datasets-2.19.0 dill-0.3.8 frozenlist-1.7.0 fsspec-2024.3.1 hf-xet-1.1.10 huggingface_hub-0.35.2 idna-3.10 joblib-1.5.2 lxml-6.0.2 multidict-6.6.4 multiprocess-0.70.16 numpy-2.2.6 pandas-2.3.2 portalocker-3.2.0 propcache-0.3.2 psutil-7.1.0 pyarrow-21.0.0 pyarrow-hotfix-0.7 python-dateutil-2.9.0.post0 pytz-2025.2 pyyaml-6.0.3 regex-2025.9.18 requests-2.32.5 sacrebleu-2.4.0 sacremoses-0.1.1 safetensors-0.6.2 sentencepiece-0.2.0 six-1.17.0 tabulate-0.9.0 tokenizers-0.20.3 tqdm-4.67.1 transformers-4.46.0 tzdata-2025.2 urllib3-2.5.0 xxhash-3.5.0 yarl-1.20.1
+/home/scur1832/.conda/envs/nllb_final/lib/python3.10/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+GPU: True Devices: 1
+Name: NVIDIA A100-SXM4-40GB MIG 3g.20gb
+Torch: 2.5.1+cu121
+Transformers: 4.46.0
+Accelerate: 0.30.0
+bitsandbytes: 0.44.1
+Environment ready for NLLB-200-3.3B quantized inference.
+
+JOB STATISTICS
+==============
+Job ID: 15007724
+Cluster: snellius
+User/Group: scur1832/scur1832
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 9
+CPU Utilized: 00:02:29
+CPU Efficiency: 4.01% of 01:01:57 core-walltime
+Job Wall-clock time: 00:06:53
+Memory Utilized: 572.73 MB
+Memory Efficiency: 0.93% of 60.00 GB (60.00 GB/node)

@@ -1,0 +1,6 @@
+# Additional requirements for COMET-22, kiwi-23, and XL metrics
+unbabel-comet>=2.0.0  # For COMET-22 and kiwi-23 metrics
+evaluate>=0.4.0       # For loading various evaluation metrics
+bert-score>=0.3.13    # For XL (cross-lingual) metrics using BERTScore
+transformers>=4.20.0  # Required for some metric models
+torch>=1.12.0         # Required for GPU acceleration of metrics
