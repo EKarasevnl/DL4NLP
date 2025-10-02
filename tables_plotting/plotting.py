@@ -256,8 +256,8 @@ def make_all_heatmaps(
                 # skip if matrix is entirely NaN (no baseline/quant pairs for that benchmark & quant)
                 if matrix.isna().all().all():
                     # create a placeholder blank/grey plot to indicate no data (still requested to save)
-                    out_png = f"./plots/{metric}/heat_map_{benchmark}_{q}.png"
-                    out_svg = f"./plots/{metric}/heat_map_{benchmark}_{q}.svg"
+                    out_png = f"./plots/heat-maps/{metric}/heat_map_{benchmark}_{q}.png"
+                    out_svg = f"./plots/heat-maps/{metric}/heat_map_{benchmark}_{q}.svg"
                     # create a grey image
                     fig, ax = plt.subplots(figsize=(6,5))
                     ax.text(0.5, 0.5, "No data for this combination", ha='center', va='center', fontsize=12)
@@ -268,8 +268,8 @@ def make_all_heatmaps(
                     plt.close(fig)
                     continue
 
-                out_png = f"./plots/{metric}/heat_map_{benchmark}_{q}.png"
-                out_svg = f"./plots/{metric}/heat_map_{benchmark}_{q}.svg"
+                out_png = f"./plots/heat-maps/{metric}/heat_map_{benchmark}_{q}.png"
+                out_svg = f"./plots/heat-maps/{metric}/heat_map_{benchmark}_{q}.svg"
 
                 plot_heatmap_and_save(
                     matrix=matrix,
