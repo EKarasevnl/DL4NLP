@@ -1,5 +1,5 @@
 import os
-import glob
+from pathlib import Path
 import pandas as pd
 from .result_processing import flores_res_processing, multilang_res_processing, wmt24pp_res_processing
 
@@ -24,7 +24,7 @@ RESOURCE_LVL_MAP = {
 }
 
 
-def load_all_data(data_path: str = "../outputs/", data_dirs: list[str] = DATA_DIRS) -> pd.DataFrame:
+def load_all_data(data_path: str = "./DL4NLP/outputs/", data_dirs: list[str] = DATA_DIRS) -> pd.DataFrame:
     """
     Load all results data automatically.
     Standardize the format and return them all as a single big DataFrame.
@@ -34,14 +34,13 @@ def load_all_data(data_path: str = "../outputs/", data_dirs: list[str] = DATA_DI
     extractions = []
 
     for data_dir in data_dirs:
-        full_path = os.path.join(data_path, data_dir)
+        full_path = Path(os.path.join(data_path, data_dir))
         if not os.path.isdir(full_path):
             raise ValueError(f"The data directory {data_dir} does not exist!")
         
-        benchmark_name = data_dir.replace("_eval", "")
-        file_search_pattern = os.path.join(full_path, f"{benchmark_name}_scores_*.csv")
-        file_paths = glob.glob(file_search_pattern)
-
+        benchmark_name = data_dir.replace("_eval", "")        
+        file_pattern = f"{benchmark_name}_scores_*.csv"
+        file_paths = list(full_path.glob(file_pattern))
         for file_path in file_paths:
             raw_df = pd.read_csv(file_path, index_col=None)
             raw_df["benchmark"] = benchmark_name.replace("multilang", "flores")
@@ -52,8 +51,8 @@ def load_all_data(data_path: str = "../outputs/", data_dirs: list[str] = DATA_DI
             raw_df.rename({"n_samples": "num_sentences"}, inplace=True, axis=1)
             raw_df = raw_df.drop(columns=["split"])
             if benchmark_name == "multilang":
-                quant_level = file_path.split("_")[-1].replace(".csv", "")
-                if quant_level not in ("baseline", "int8", "int4"):
+                quant_level = str(file_path).split("_")[-1].replace(".csv", "")
+                if quant_level not in {"baseline", "int8", "int4"}:
                     quant_level = "int4"
                 raw_df["mode"] = quant_level
             processor_func = PROCESSOR_MAP[benchmark_name]
