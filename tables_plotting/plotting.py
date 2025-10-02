@@ -184,9 +184,14 @@ def plot_heatmap_and_save(
 
     # ticks and labels
     ax.set_xticks(np.arange(len(languages_order)))
-    ax.set_yticks(np.arange(len(languages_order)))
     ax.set_xticklabels(languages_order, rotation=45, ha='right')
-    ax.set_yticklabels(languages_order)
+
+    ax.set_yticks(np.arange(len(languages_order)))
+    ax.set_yticklabels(languages_order) # reversed order
+    ax.invert_yaxis()
+
+    ax.set_xlabel("Target language", fontsize=12)
+    ax.set_ylabel("Source language", fontsize=12)
 
     # grid lines for clarity
     ax.set_xticks(np.arange(-.5, len(languages_order), 1), minor=True)
