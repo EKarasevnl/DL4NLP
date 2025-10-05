@@ -26,6 +26,17 @@ LANG_ORDER = [
     "English", "Russian", "French", "German", "Dutch",
     "Polish", "Latvian", "Zulu", "Telugu", "Swahili"
 ]
+RES_LVL_ORDER = [
+    "High Resource - High Resource",
+    "High Resource - Mid Resource",
+    "High Resource - Low Resource",
+    "Mid Resource - High Resource",
+    "Mid Resource - Mid Resource",
+    "Mid Resource - Low Resource",
+    "Low Resource - High Resource"
+    "Low Resource - Mid Resource"
+    "Low Resource - Low Resource"
+]
 
 
 # -------------------- Utility / Core functions --------------------
@@ -44,7 +55,96 @@ def load_data(csv_path: str) -> pd.DataFrame:
     df = pd.read_csv(csv_path)
     return df
 
+# -------------------- Line Plots --------------------
+def prepare_grouped_data(
+    df: pd.DataFrame,
+    metric: str,
+    benchmark: str
+) -> pd.DataFrame:
+    """
+    Group data by quantization + resource level combination and compute averages.
 
+    Args:
+        df: Input DataFrame.
+        metric: Metric column to average (e.g. 'bleu').
+        benchmark: Benchmark name.
+
+    Returns:
+        DataFrame with columns [quant_level, res_combo, mean_value].
+    """
+    sub = df[df["benchmark"] == benchmark].copy()
+    sub["res_combo"] = (
+        sub["source_lang_resource_level"] + " - " + sub["target_lang_resource_level"]
+    )
+
+    grouped = (
+        sub.groupby(["quant_level", "res_combo"], as_index=False)
+        .agg({metric: ["mean", "std"]})
+    )
+    grouped.columns = ["quant_level", "res_combo", "mean_value", "std_value"]
+
+    # enforce ordering of quant levels
+    quant_order = ["Baseline", "8-Bit", "4-Bit"]
+    grouped["quant_level"] = pd.Categorical(grouped["quant_level"], categories=quant_order, ordered=True)
+    grouped = grouped.sort_values(["res_combo", "quant_level"])
+    return grouped
+
+
+def plot_line_chart(
+    df_grouped: pd.DataFrame,
+    metric: str,
+    benchmark: str,
+    out_png: str,
+    out_svg: str,
+    figsize=(8, 6)
+) -> None:
+    """
+    Plot line chart for a given benchmark × metric.
+
+    Args:
+        df_grouped: DataFrame from prepare_grouped_data().
+        metric: Metric name.
+        benchmark: Benchmark name.
+        out_png: Path for PNG.
+        out_svg: Path for SVG.
+    """
+    os.makedirs(os.path.dirname(out_png), exist_ok=True)
+    os.makedirs(os.path.dirname(out_svg), exist_ok=True)
+
+    fig, ax = plt.subplots(figsize=figsize)
+
+    for res_combo, group in df_grouped.groupby("res_combo"):
+        ax.plot(
+            group["quant_level"],
+            group["mean_value"],
+            marker="o",
+            label=res_combo
+        )
+        # ax.errorbar(
+        #     group["quant_level"],
+        #     group["mean_value"],
+        #     yerr=group["std_value"],
+        #     marker="o",
+        #     label=res_combo,
+        #     capsize=4
+        # )
+
+    ax.set_title(f"{metric.upper()} — {benchmark}")
+    ax.set_xlabel("Quantization Level")
+    ax.set_ylabel(f"Average {metric.upper()}")
+    ax.legend(title="Resource Combination", bbox_to_anchor=(1.05, 1), loc="upper left")
+    handles, labels = ax.get_legend_handles_labels()
+    sorted_pairs = [(h, l) for l, h in sorted(zip(labels, handles), key=lambda x: RES_LVL_ORDER.index(x[0]) if x[0] in RES_LVL_ORDER else 999)]
+    handles, labels = zip(*sorted_pairs)
+    ax.legend(handles, labels, title="Resource Combination", bbox_to_anchor=(1.05, 1), loc="upper left")
+    fig.tight_layout()
+
+    fig.savefig(out_png, dpi=300)
+    fig.savefig(out_svg)
+    plt.close(fig)
+
+
+# -------------------- Heat Maps --------------------
 def compute_percent_change_vs_baseline(
     df: pd.DataFrame,
     metric: str,
@@ -282,6 +382,32 @@ def make_all_heatmaps(
                 )
 
 
+def make_all_line_charts(
+    csv_path: str,
+    metrics: List[str],
+    quant_levels: List[str]
+) -> None:
+    """
+    Generate all line charts for each metric × benchmark.
+
+    Args:
+        csv_path: Input CSV path.
+        metrics: Metrics to process.
+        quant_levels: Quantization levels to include.
+    """
+    df = load_data(csv_path)
+    benchmarks = df["benchmark"].unique().tolist()
+
+    for metric in metrics:
+        for benchmark in benchmarks:
+            grouped = prepare_grouped_data(df, metric=metric, benchmark=benchmark)
+            if grouped.empty:
+                continue
+            out_png = f"./plots/line-charts/{metric}/line_chart_{benchmark}.png"
+            out_svg = f"./plots/line-charts/{metric}/line_chart_{benchmark}.svg"
+            plot_line_chart(grouped, metric, benchmark, out_png, out_svg)
+
+
 # -------------------- CLI --------------------
 
 def parse_args() -> argparse.Namespace:
@@ -302,6 +428,11 @@ def main() -> None:
     """
     args = parse_args()
     make_all_heatmaps(csv_path=args.csv, metrics=args.metrics, quant_levels=args.quants, languages_order=args.langs_order)
+    make_all_line_charts(
+        csv_path=args.csv,
+        metrics=args.metrics,
+        quant_levels=["Baseline", "8-Bit", "4-Bit"]
+    )
 
 
 if __name__ == "__main__":
