@@ -103,3 +103,21 @@ def wmt24pp_res_processing(df: pd.DataFrame) -> pd.DataFrame:
     # Re-ordering cols for better readability.
     cols = ['source_lang', 'target_lang', 'quant_level'] + [col for col in df.columns if col not in ['source_lang', 'target_lang', 'quant_level']]
     return df[cols]
+
+
+def wmt_multilang_processing(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Custom processing to standardize the results from the WMT_multiling_eval directory.
+    """
+
+    # First, clean up the languages
+    df['source_lang_code'] = df['src_lang'].str.split('_', n=1).str[0]
+    df['target_lang_code'] = df['tgt_lang'].str.split('_', n=1).str[0]
+    df['source_lang'] = df['source_lang_code'].map(LANG_MAP)
+    df['target_lang'] = df['target_lang_code'].map(LANG_MAP)
+    df["quant_level"] = df["mode"].map(QUANT_MAP)
+    df = df.drop(columns=['src_lang', 'tgt_lang', 'source_lang_code', 'target_lang_code', 'mode', 'language_pair'])
+    
+    # Re-ordering cols for better readability.
+    cols = ['source_lang', 'target_lang', 'quant_level'] + [col for col in df.columns if col not in ['source_lang', 'target_lang', 'quant_level']]
+    return df[cols]
