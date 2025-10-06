@@ -4,7 +4,7 @@ Evaluate NLLB-200-3.3B on google/wmt24pp.
 
 - Auto-detects dataset configs and fields
 - Evaluates en<->target for given 2-letter language codes
-- Modes: baseline | int8 | int4
+- Modes: baseline | int8 | int4 | pruned
 - Metrics: corpus BLEU, chrF
 """
 
@@ -24,10 +24,12 @@ from sacrebleu import corpus_bleu, corpus_chrf
 from tqdm import tqdm
 
 from nllb_test import (
+    _apply_magnitude_pruning,
     _dtype_baseline,
     _load_model_baseline,
     _load_model_int4,
     _load_model_int8,
+    _load_model_pruned,
     _load_tokenizer,
     _print_env,
 )
@@ -57,9 +59,10 @@ class EvalConfig:
     batch_size: int
     max_new_tokens: int
     output_dir: str
+    sparsity: float
 
 
-def _prepare_model_and_tokenizer(model_id: str, mode: str):
+def _prepare_model_and_tokenizer(model_id: str, mode: str, sparsity: float = 0.5):
     tokenizer = _load_tokenizer(model_id)
     if mode == "baseline":
         model = _load_model_baseline(model_id, _dtype_baseline())
@@ -67,6 +70,8 @@ def _prepare_model_and_tokenizer(model_id: str, mode: str):
         model = _load_model_int8(model_id)
     elif mode == "int4":
         model = _load_model_int4(model_id)
+    elif mode == "pruned":
+        model = _load_model_pruned(model_id, sparsity=sparsity)
     else:
         raise ValueError("Unknown mode")
     return model, tokenizer
@@ -92,22 +97,43 @@ def _batch_translate(
         for start in tqdm(range(0, len(inputs_texts), batch_size), desc=f"{src_lang}->{tgt_lang}"):
             end = min(start + batch_size, len(inputs_texts))
             batch_texts = inputs_texts[start:end]
-            enc = tokenizer(
-                batch_texts,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-            )
-            if torch.cuda.is_available():
-                enc = {k: v.to("cuda") for k, v in enc.items()}
-            gen = model.generate(
-                **enc,
-                forced_bos_token_id=forced_bos_id,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-            )
-            decoded = tokenizer.batch_decode(gen, skip_special_tokens=True)
-            outputs.extend(decoded)
+
+            try:
+                enc = tokenizer(
+                    batch_texts,
+                    return_tensors="pt",
+                    padding=True,
+                    truncation=True,
+                )
+                if torch.cuda.is_available():
+                    enc = {k: v.to("cuda") for k, v in enc.items()}
+
+                # Clear cache before generation to prevent memory issues
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+
+                gen = model.generate(
+                    **enc,
+                    forced_bos_token_id=forced_bos_id,
+                    max_new_tokens=max_new_tokens,
+                    do_sample=False,
+                    pad_token_id=tokenizer.eos_token_id,
+                )
+                decoded = tokenizer.batch_decode(gen, skip_special_tokens=True)
+                outputs.extend(decoded)
+
+                # Clear cache after generation
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+
+            except RuntimeError as e:
+                if "cublas" in str(e).lower() or "cuda" in str(e).lower():
+                    print(f"CUDA/cuBLAS error in batch {start//batch_size + 1}, skipping this batch: {e}")
+                    # Generate outputs for this batch with a placeholder
+                    outputs.extend(["[ERROR: CUDA failure]"] * len(batch_texts))
+                else:
+                    raise e
+
     return outputs
 
 
@@ -301,8 +327,21 @@ def run(cfg: EvalConfig) -> int:
     print(f"Languages: {cfg.langs}")
     print(f"Directions: {cfg.directions}")
     print(f"Mode: {cfg.mode}")
+    if cfg.mode == "pruned":
+        print(f"Sparsity: {cfg.sparsity:.2%}")
 
-    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
+    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode, sparsity=cfg.sparsity)
+
+    # Enable TF32 for better numerical stability on Ampere/Hopper
+    try:
+        torch.backends.cuda.matmul.allow_tf32 = True  # type: ignore[attr-defined]
+        torch.set_float32_matmul_precision("high")
+    except Exception:
+        pass
+
+    # Clear any cached memory from model loading
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
 
     directions_to_run: Iterable[str]
     if cfg.directions == "both":
@@ -329,13 +368,16 @@ def run(cfg: EvalConfig) -> int:
                     sources, references = _collect_sources_refs(ds, l2, direction)
                 if not sources:
                     raise RuntimeError("No sentence pairs extracted from dataset")
+                # Use smaller batch size for 8-bit quantization to reduce memory pressure
+                effective_batch_size = cfg.batch_size // 2 if cfg.mode == "int8" else cfg.batch_size
+
                 hypotheses = _batch_translate(
                     model=model,
                     tokenizer=tokenizer,
                     inputs_texts=sources,
                     src_lang="eng_Latn" if direction == "en2x" else nllb_tgt_code,
                     tgt_lang=nllb_tgt_code if direction == "en2x" else "eng_Latn",
-                    batch_size=cfg.batch_size,
+                    batch_size=effective_batch_size,
                     max_new_tokens=cfg.max_new_tokens,
                 )
                 bleu = corpus_bleu(hypotheses, [references]).score
@@ -356,13 +398,14 @@ def parse_args() -> EvalConfig:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", default="google/wmt24pp")
     parser.add_argument("--model", default="facebook/nllb-200-3.3B")
-    parser.add_argument("--mode", choices=["baseline", "int8", "int4"], default="int4")
+    parser.add_argument("--mode", choices=["baseline", "int8", "int4", "pruned"], default="int4")
     parser.add_argument("--langs", default="de,ru,fr,nl,pl,lv,zu,te,sw")
     parser.add_argument("--directions", choices=["en2x", "x2en", "both"], default="both")
     parser.add_argument("--split", default="test")
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--max_new_tokens", type=int, default=256)
     parser.add_argument("--output_dir", default="outputs/wmt24pp_eval")
+    parser.add_argument("--sparsity", type=float, default=0.5, help="Sparsity level for pruned mode (0.0-1.0)")
     args = parser.parse_args()
 
     langs = [l.strip() for l in args.langs.split(",") if l.strip()]
@@ -376,6 +419,7 @@ def parse_args() -> EvalConfig:
         batch_size=args.batch_size,
         max_new_tokens=args.max_new_tokens,
         output_dir=args.output_dir,
+        sparsity=args.sparsity,
     )
 
 

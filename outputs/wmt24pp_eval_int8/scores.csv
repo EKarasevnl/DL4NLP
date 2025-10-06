@@ -1,0 +1,8 @@
+lang,direction,mode,split,bleu,chrf,num_sentences
+de,en2x,int8,test,25.13,51.85,960
+de,x2en,int8,test,31.29,56.50,960
+ru,en2x,int8,test,20.26,45.02,960
+ru,x2en,int8,test,24.04,49.87,960
+fr,en2x,int8,test,32.98,56.28,1920
+fr,x2en,int8,test,37.20,60.81,1920
+nl,en2x,int8,test,25.31,50.25,960

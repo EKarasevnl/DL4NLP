@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --partition=gpu_h100
+#SBATCH --partition=gpu_a100
 #SBATCH --gpus=1
-#SBATCH --job-name=wmt24pp_eval
+#SBATCH --job-name=wmt24pp_eval_8bit
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --time=08:00:00
-#SBATCH --output=outputs/wmt24pp_eval.out
+#SBATCH --output=outputs/wmt24pp_eval_8bit.out
 #SBATCH --mem=128G
 
 module purge
@@ -36,14 +36,14 @@ fi
 python wmt24pp_eval.py \
   --dataset "$DATA_DIR" \
   --langs "$LANGS" \
-  --mode int4 \
+  --mode int8 \
   --directions both \
   --split test \
   --batch_size 8 \
   --max_new_tokens 256 \
-  --output_dir outputs/wmt24pp_eval
+  --output_dir outputs/wmt24pp_eval_int8
 
-echo "Done. Scores written to outputs/wmt24pp_eval/scores.csv"
+echo "Done. Scores written to outputs/wmt24pp_eval_int8/scores.csv"
 
 
 
