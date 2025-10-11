@@ -1,0 +1,15 @@
+# Core dependencies
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.0.0
+accelerate>=0.20.0
+
+# Quantization
+bitsandbytes>=0.41.0
+
+# Evaluation metrics
+sacrebleu>=2.3.0
+unbabel-comet>=2.2.0
+
+# Utilities
+tqdm>=4.65.0
