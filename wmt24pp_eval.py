@@ -4,8 +4,8 @@ Evaluate NLLB-200-3.3B on google/wmt24pp.
 
 - Auto-detects dataset configs and fields
 - Evaluates en<->target for given 2-letter language codes
-- Modes: baseline | int8 | int4
-- Metrics: corpus BLEU, chrF
+- Modes: baseline | int8 | int4 | pruned
+- Metrics: corpus BLEU, chrF, COMET-22, kiwi-23
 """
 
 import argparse
@@ -21,44 +21,21 @@ from typing import Dict, Iterable, List, Optional, Tuple
 import torch
 from datasets import get_dataset_config_names, load_dataset
 from sacrebleu import corpus_bleu, corpus_chrf
-from tqdm import tqdm
 
-# Additional metrics
-try:
-    from comet import download_model, load_from_checkpoint
-    COMET_AVAILABLE = True
-except ImportError:
-    COMET_AVAILABLE = False
-    print("Warning: COMET not available. Install with: pip install unbabel-comet")
-
-try:
-    import evaluate
-    EVALUATE_AVAILABLE = True
-except ImportError:
-    EVALUATE_AVAILABLE = False
-    print("Warning: evaluate library not available. Install with: pip install evaluate")
-
-from nllb_test import (
-    _dtype_baseline,
-    _load_model_baseline,
-    _load_model_int4,
-    _load_model_int8,
-    _load_tokenizer,
-    _print_env,
+# Import shared utilities
+from eval_utils import (
+    prepare_model_and_tokenizer,
+    batch_translate,
+    compute_advanced_metrics,
+    print_env,
+    WMT24PP_TO_NLLB,
+    get_scores_filename,
+    format_metric,
 )
 
 
-NLLB_CODE_BY_WMT24PP: Dict[str, str] = {
-    "de": "deu_Latn",
-    "ru": "rus_Cyrl",
-    "fr": "fra_Latn",
-    "nl": "nld_Latn",
-    "pl": "pol_Latn",
-    "lv": "lvs_Latn",
-    "zu": "zul_Latn",
-    "te": "tel_Telu",
-    "sw": "swh_Latn",
-}
+NLLB_CODE_BY_WMT24PP = {k.replace("eng_Latn", "en"): v for k, v in WMT24PP_TO_NLLB.items() if k != "eng_Latn"}
+NLLB_CODE_BY_WMT24PP["en"] = "eng_Latn"
 
 
 @dataclass
@@ -72,101 +49,23 @@ class EvalConfig:
     batch_size: int
     max_new_tokens: int
     output_dir: str
+    sparsity: float
 
 
-def _prepare_model_and_tokenizer(model_id: str, mode: str):
-    tokenizer = _load_tokenizer(model_id)
-    if mode == "baseline":
-        model = _load_model_baseline(model_id, _dtype_baseline())
-    elif mode == "int8":
-        model = _load_model_int8(model_id)
-    elif mode == "int4":
-        model = _load_model_int4(model_id)
-    else:
-        raise ValueError("Unknown mode")
-    return model, tokenizer
 
 
-def _batch_translate(
-    model,
-    tokenizer,
-    inputs_texts: List[str],
-    src_lang: str,
-    tgt_lang: str,
-    batch_size: int,
-    max_new_tokens: int,
-) -> List[str]:
-    tokenizer.src_lang = src_lang
-    forced_bos_id = tokenizer.convert_tokens_to_ids(tgt_lang)
-    if forced_bos_id is None or forced_bos_id < 0:
-        raise ValueError(f"Could not resolve target language token id for {tgt_lang}")
-
-    outputs: List[str] = []
-    model.eval()
-    with torch.no_grad():
-        for start in tqdm(range(0, len(inputs_texts), batch_size), desc=f"{src_lang}->{tgt_lang}"):
-            end = min(start + batch_size, len(inputs_texts))
-            batch_texts = inputs_texts[start:end]
-            enc = tokenizer(
-                batch_texts,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-            )
-            if torch.cuda.is_available():
-                enc = {k: v.to("cuda") for k, v in enc.items()}
-            gen = model.generate(
-                **enc,
-                forced_bos_token_id=forced_bos_id,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-            )
-            decoded = tokenizer.batch_decode(gen, skip_special_tokens=True)
-            outputs.extend(decoded)
-    return outputs
-
-
-def _compute_advanced_metrics(sources, hypotheses, references):
-    """Compute COMET-22 and kiwi-23 metrics."""
-    metrics = {"comet22": None, "kiwi23": None}
-    
-    # COMET-22 (reference-based)
-    if COMET_AVAILABLE:
-        try:
-            # Load COMET-22 model
-            model_path = download_model("Unbabel/wmt22-comet-da")
-            comet_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for COMET
-            comet_data = []
-            for src, hyp, ref in zip(sources, hypotheses, references):
-                comet_data.append({"src": src, "mt": hyp, "ref": ref})
-            
-            # Compute COMET score
-            comet_score = comet_model.predict(comet_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["comet22"] = comet_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute COMET-22: {e}")
-    
-    # kiwi-23 (reference-free quality estimation)
-    if COMET_AVAILABLE:
-        try:
-            # Load kiwi-23 model (reference-free)
-            model_path = download_model("Unbabel/wmt23-cometkiwi-da-xxl")
-            kiwi_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for kiwi (reference-free, only source and MT)
-            kiwi_data = []
-            for src, hyp in zip(sources, hypotheses):
-                kiwi_data.append({"src": src, "mt": hyp})
-            
-            # Compute kiwi score
-            kiwi_score = kiwi_model.predict(kiwi_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["kiwi23"] = kiwi_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute kiwi-23: {e}")
-    
-    return metrics
+@dataclass
+class EvalConfig:
+    dataset_name: str
+    model_id: str
+    mode: str
+    langs: List[str]
+    directions: str
+    split: str
+    batch_size: int
+    max_new_tokens: int
+    output_dir: str
+    sparsity: float = 0.5
 
 
 def _first_available_split(dataset_name: str, config_name: Optional[str], preferred: str) -> str:
@@ -348,19 +247,26 @@ def _collect_sources_refs(ds, l2: str, direction: str) -> Tuple[List[str], List[
 
 def run(cfg: EvalConfig) -> int:
     os.makedirs(cfg.output_dir, exist_ok=True)
-    csv_path = os.path.join(cfg.output_dir, "scores.csv")
+    # Name output file to include mode and sparsity (when applicable)
+    if getattr(cfg, "mode", None) == "pruned":
+        sparsity_str = f"s{cfg.sparsity:.2f}".replace('.', 'p')
+        csv_name = f"scores_{cfg.mode}_{sparsity_str}.csv"
+    else:
+        csv_name = f"scores_{cfg.mode}.csv"
+    csv_path = os.path.join(cfg.output_dir, csv_name)
     if not os.path.exists(csv_path):
         with open(csv_path, "w", newline="") as f:
             writer = csv.writer(f)
             writer.writerow(["lang", "direction", "mode", "split", "bleu", "chrf", "comet22", "kiwi23", "num_sentences"]) 
 
-    _print_env()
+    eval_utils.print_env()
     print(f"Dataset: {cfg.dataset_name}")
     print(f"Languages: {cfg.langs}")
     print(f"Directions: {cfg.directions}")
     print(f"Mode: {cfg.mode}")
+    print(f"Sparsity: {cfg.sparsity}")
 
-    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
+    model, tokenizer = eval_utils.prepare_model_and_tokenizer(cfg.model_id, cfg.mode, cfg.sparsity)
 
     directions_to_run: Iterable[str]
     if cfg.directions == "both":
@@ -387,7 +293,7 @@ def run(cfg: EvalConfig) -> int:
                     sources, references = _collect_sources_refs(ds, l2, direction)
                 if not sources:
                     raise RuntimeError("No sentence pairs extracted from dataset")
-                hypotheses = _batch_translate(
+                hypotheses = eval_utils.batch_translate(
                     model=model,
                     tokenizer=tokenizer,
                     inputs_texts=sources,
@@ -400,7 +306,7 @@ def run(cfg: EvalConfig) -> int:
                 chrf = corpus_chrf(hypotheses, [references]).score
                 
                 # Compute additional metrics
-                advanced_metrics = _compute_advanced_metrics(sources, hypotheses, references)
+                advanced_metrics = eval_utils.compute_advanced_metrics(sources, hypotheses, references)
                 comet22 = advanced_metrics["comet22"]
                 kiwi23 = advanced_metrics["kiwi23"]
                 
@@ -427,13 +333,14 @@ def parse_args() -> EvalConfig:
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", default="google/wmt24pp")
     parser.add_argument("--model", default="facebook/nllb-200-3.3B")
-    parser.add_argument("--mode", choices=["baseline", "int8", "int4"], default="int4")
+    parser.add_argument("--mode", choices=["baseline", "int8", "int4", "pruned"], default="int4")
     parser.add_argument("--langs", default="de,ru,fr,nl,pl,lv,zu,te,sw")
     parser.add_argument("--directions", choices=["en2x", "x2en", "both"], default="both")
     parser.add_argument("--split", default="test")
     parser.add_argument("--batch_size", type=int, default=8)
     parser.add_argument("--max_new_tokens", type=int, default=256)
     parser.add_argument("--output_dir", default="outputs/wmt24pp_eval")
+    parser.add_argument("--sparsity", type=float, default=0.5, help="Sparsity level for pruned mode (0.0-1.0)")
     args = parser.parse_args()
 
     langs = [l.strip() for l in args.langs.split(",") if l.strip()]
@@ -447,6 +354,7 @@ def parse_args() -> EvalConfig:
         batch_size=args.batch_size,
         max_new_tokens=args.max_new_tokens,
         output_dir=args.output_dir,
+        sparsity=args.sparsity,
     )
 
 

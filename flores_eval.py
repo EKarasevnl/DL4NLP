@@ -41,15 +41,8 @@ except ImportError:
     EVALUATE_AVAILABLE = False
     print("Warning: evaluate library not available. Install with: pip install evaluate")
 
-# Reuse helpers from nllb_test.py (same directory)
-from nllb_test import (
-    _dtype_baseline,
-    _load_model_baseline,
-    _load_model_int4,
-    _load_model_int8,
-    _load_tokenizer,
-    _print_env,
-)
+# Use shared utilities from eval_utils
+import eval_utils
 
 
 @dataclass
@@ -63,101 +56,6 @@ class EvalConfig:
     batch_size: int
     max_new_tokens: int
     output_dir: str
-
-
-def _prepare_model_and_tokenizer(model_id: str, mode: str):
-    tokenizer = _load_tokenizer(model_id)
-    if mode == "baseline":
-        model = _load_model_baseline(model_id, _dtype_baseline())
-    elif mode == "int8":
-        model = _load_model_int8(model_id)
-    elif mode == "int4":
-        model = _load_model_int4(model_id)
-    else:
-        raise ValueError("Unknown mode")
-    return model, tokenizer
-
-
-def _batch_translate(
-    model,
-    tokenizer,
-    inputs_texts: List[str],
-    src_lang: str,
-    tgt_lang: str,
-    batch_size: int,
-    max_new_tokens: int,
-) -> List[str]:
-    tokenizer.src_lang = src_lang
-    forced_bos_id = tokenizer.convert_tokens_to_ids(tgt_lang)
-    if forced_bos_id is None or forced_bos_id < 0:
-        raise ValueError(f"Could not resolve target language token id for {tgt_lang}")
-
-    outputs: List[str] = []
-    model.eval()
-    with torch.no_grad():
-        for start in tqdm(range(0, len(inputs_texts), batch_size), desc=f"{src_lang}->{tgt_lang}"):
-            end = min(start + batch_size, len(inputs_texts))
-            batch_texts = inputs_texts[start:end]
-            enc = tokenizer(
-                batch_texts,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-            )
-            if torch.cuda.is_available():
-                enc = {k: v.to("cuda") for k, v in enc.items()}
-            gen = model.generate(
-                **enc,
-                forced_bos_token_id=forced_bos_id,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-            )
-            decoded = tokenizer.batch_decode(gen, skip_special_tokens=True)
-            outputs.extend(decoded)
-    return outputs
-
-
-def _compute_advanced_metrics(sources, hypotheses, references):
-    """Compute COMET-22 and kiwi-23 metrics."""
-    metrics = {"comet22": None, "kiwi23": None}
-    
-    # COMET-22 (reference-based)
-    if COMET_AVAILABLE:
-        try:
-            # Load COMET-22 model
-            model_path = download_model("Unbabel/wmt22-comet-da")
-            comet_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for COMET
-            comet_data = []
-            for src, hyp, ref in zip(sources, hypotheses, references):
-                comet_data.append({"src": src, "mt": hyp, "ref": ref})
-            
-            # Compute COMET score
-            comet_score = comet_model.predict(comet_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["comet22"] = comet_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute COMET-22: {e}")
-    
-    # kiwi-23 (reference-free quality estimation)
-    if COMET_AVAILABLE:
-        try:
-            # Load kiwi-23 model (reference-free)
-            model_path = download_model("Unbabel/wmt23-cometkiwi-da-xxl")
-            kiwi_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for kiwi (reference-free, only source and MT)
-            kiwi_data = []
-            for src, hyp in zip(sources, hypotheses):
-                kiwi_data.append({"src": src, "mt": hyp})
-            
-            # Compute kiwi score
-            kiwi_score = kiwi_model.predict(kiwi_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["kiwi23"] = kiwi_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute kiwi-23: {e}")
-    
-    return metrics
 
 
 def _resolve_dataset_path(path: str) -> str:
@@ -194,7 +92,7 @@ def _eval_direction(
         sources = ds[f"sentence_{tgt_lang}"]
         references = ds["sentence_eng_Latn"]
 
-    hypotheses = _batch_translate(
+    hypotheses = eval_utils.batch_translate(
         model=model,
         tokenizer=tokenizer,
         inputs_texts=sources,
@@ -208,7 +106,7 @@ def _eval_direction(
     chrf = corpus_chrf(hypotheses, [references]).score
     
     # Compute additional metrics
-    advanced_metrics = _compute_advanced_metrics(sources, hypotheses, references)
+    advanced_metrics = eval_utils.compute_advanced_metrics(sources, hypotheses, references)
     comet22 = advanced_metrics["comet22"]
     kiwi23 = advanced_metrics["kiwi23"]
     
@@ -224,16 +122,16 @@ def _write_csv_header(csv_path: str):
 
 def run(cfg: EvalConfig) -> int:
     os.makedirs(cfg.output_dir, exist_ok=True)
-    csv_path = os.path.join(cfg.output_dir, "scores.csv")
+    csv_path = os.path.join(cfg.output_dir, f"flores_scores_{cfg.mode}.csv")
     _write_csv_header(csv_path)
 
-    _print_env()
+    eval_utils.print_env()
     print(f"Using dataset from: {cfg.dataset_path}")
     print(f"Languages: {cfg.langs}")
     print(f"Directions: {cfg.directions}")
     print(f"Mode: {cfg.mode}")
 
-    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
+    model, tokenizer = eval_utils.prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
 
     directions_to_run: Iterable[str]
     if cfg.directions == "both":

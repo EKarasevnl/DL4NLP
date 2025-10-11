@@ -44,15 +44,8 @@ except ImportError:
     EVALUATE_AVAILABLE = False
     print("Warning: evaluate library not available. Install with: pip install evaluate")
 
-# Reuse helpers from nllb_test.py (same directory)
-from nllb_test import (
-    _dtype_baseline,
-    _load_model_baseline,
-    _load_model_int4,
-    _load_model_int8,
-    _load_tokenizer,
-    _print_env,
-)
+# Use shared utilities from eval_utils
+import eval_utils
 
 
 @dataclass
@@ -69,108 +62,9 @@ class EvalConfig:
     output_dir: str
 
 
-def _prepare_model_and_tokenizer(model_id: str, mode: str):
-    """Load model and tokenizer based on mode."""
-    tokenizer = _load_tokenizer(model_id)
-    if mode == "baseline":
-        dtype = _dtype_baseline()
-        model = _load_model_baseline(model_id, dtype)
-    elif mode == "int8":
-        model = _load_model_int8(model_id)
-    elif mode == "int4":
-        model = _load_model_int4(model_id)
-    else:
-        raise ValueError(f"Unknown mode: {mode}")
-    return model, tokenizer
-
-
-def _translate_batch(
-    model, tokenizer, src_lang: str, tgt_lang: str, inputs_texts: List[str],
-    batch_size: int, max_new_tokens: int
-) -> List[str]:
-    """Translate a batch of texts from src_lang to tgt_lang."""
-    
-    # NLLB requires setting tokenizer.src_lang and forcing BOS of target
-    tokenizer.src_lang = src_lang
-    forced_bos_id = tokenizer.convert_tokens_to_ids(tgt_lang)
-    if forced_bos_id is None or forced_bos_id < 0:
-        raise ValueError(f"Could not resolve target language token id for {tgt_lang}")
-
-    outputs = []
-    with torch.no_grad():
-        for start in range(0, len(inputs_texts), batch_size):
-            end = min(start + batch_size, len(inputs_texts))
-            batch_texts = inputs_texts[start:end]
-            enc = tokenizer(
-                batch_texts,
-                return_tensors="pt",
-                padding=True,
-                truncation=True,
-            )
-            if torch.cuda.is_available():
-                enc = {k: v.to("cuda") for k, v in enc.items()}
-            gen = model.generate(
-                **enc,
-                forced_bos_token_id=forced_bos_id,
-                max_new_tokens=max_new_tokens,
-                do_sample=False,
-            )
-            decoded = tokenizer.batch_decode(gen, skip_special_tokens=True)
-            outputs.extend(decoded)
-    return outputs
-
-
-def _compute_advanced_metrics(sources, hypotheses, references):
-    """Compute COMET-22 and kiwi-23 metrics."""
-    metrics = {"comet22": None, "kiwi23": None}
-    
-    # COMET-22 (reference-based)
-    if COMET_AVAILABLE:
-        try:
-            # Load COMET-22 model
-            model_path = download_model("Unbabel/wmt22-comet-da")
-            comet_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for COMET
-            comet_data = []
-            for src, hyp, ref in zip(sources, hypotheses, references):
-                comet_data.append({"src": src, "mt": hyp, "ref": ref})
-            
-            # Compute COMET score
-            comet_score = comet_model.predict(comet_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["comet22"] = comet_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute COMET-22: {e}")
-    
-    # kiwi-23 (reference-free quality estimation)
-    if COMET_AVAILABLE:
-        try:
-            # Load kiwi-23 model (reference-free)
-            model_path = download_model("Unbabel/wmt23-cometkiwi-da-xxl")
-            kiwi_model = load_from_checkpoint(model_path)
-            
-            # Prepare data for kiwi (reference-free, only source and MT)
-            kiwi_data = []
-            for src, hyp in zip(sources, hypotheses):
-                kiwi_data.append({"src": src, "mt": hyp})
-            
-            # Compute kiwi score
-            kiwi_score = kiwi_model.predict(kiwi_data, batch_size=8, gpus=1 if torch.cuda.is_available() else 0)
-            metrics["kiwi23"] = kiwi_score.system_score
-        except Exception as e:
-            print(f"Warning: Failed to compute kiwi-23: {e}")
-    
-    return metrics
-
-
 def _lang_code_to_wmt_code(lang_code: str) -> str:
     """Convert FLORES language code to WMT24++ 2-letter code."""
-    mapping = {
-        "deu_Latn": "de", "rus_Cyrl": "ru", "fra_Latn": "fr", "nld_Latn": "nl",
-        "pol_Latn": "pl", "lvs_Latn": "lv", "zul_Latn": "zu", "tel_Telu": "te", 
-        "swh_Latn": "sw"
-    }
-    return mapping.get(lang_code, lang_code)
+    return eval_utils.NLLB_TO_WMT24PP.get(lang_code, lang_code)
 
 
 def _eval_flores_pair(
@@ -224,8 +118,8 @@ def _eval_flores_pair(
     ref_texts = [ex[tgt_col] for ex in data]
     
     # Translate
-    hyp_texts = _translate_batch(
-        model, tokenizer, src_lang, tgt_lang, src_texts,
+    hyp_texts = eval_utils.batch_translate(
+        model, tokenizer, src_texts, src_lang, tgt_lang,
         cfg.batch_size, cfg.max_new_tokens
     )
     
@@ -234,7 +128,7 @@ def _eval_flores_pair(
     chrf = corpus_chrf(hyp_texts, [ref_texts]).score
     
     # Compute advanced metrics
-    advanced = _compute_advanced_metrics(src_texts, hyp_texts, ref_texts)
+    advanced = eval_utils.compute_advanced_metrics(src_texts, hyp_texts, ref_texts)
     
     return bleu, chrf, advanced["comet22"], advanced["kiwi23"], len(src_texts)
 
@@ -301,7 +195,7 @@ def _eval_wmt24pp_pair(
 def run(cfg: EvalConfig) -> int:
     """Run multi-language evaluation."""
     
-    _print_env()
+    eval_utils.print_env()
     
     os.makedirs(cfg.output_dir, exist_ok=True)
     
@@ -327,7 +221,7 @@ def run(cfg: EvalConfig) -> int:
     print(f"Languages: {cfg.langs}")
     print(f"Mode: {cfg.mode}")
 
-    model, tokenizer = _prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
+    model, tokenizer = eval_utils.prepare_model_and_tokenizer(cfg.model_id, cfg.mode)
 
     # Generate language pairs based on configuration
     if cfg.src_lang:

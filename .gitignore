@@ -205,4 +205,11 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Other
 .hf_token
+*.out
+*.csv
+*.sh
+*.job
+outputs/
