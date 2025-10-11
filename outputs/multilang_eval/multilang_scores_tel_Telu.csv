@@ -1,9 +1,0 @@
-src_lang,tgt_lang,dataset,mode,split,bleu,chrf,comet22,kiwi23,n_samples
-tel_Telu,deu_Latn,flores,int4,devtest,22.01,51.25,0.8154,0.7129,1012
-tel_Telu,rus_Cyrl,flores,int4,devtest,19.28,47.22,0.8524,0.7092,1012
-tel_Telu,fra_Latn,flores,int4,devtest,30.62,56.99,0.8337,0.7075,1012
-tel_Telu,nld_Latn,flores,int4,devtest,18.00,49.05,0.8320,0.6859,1012
-tel_Telu,pol_Latn,flores,int4,devtest,13.35,42.19,0.8431,0.6800,1012
-tel_Telu,lvs_Latn,flores,int4,devtest,12.82,42.05,0.7958,0.5185,1012
-tel_Telu,zul_Latn,flores,int4,devtest,10.63,48.95,0.7627,0.4485,1012
-tel_Telu,swh_Latn,flores,int4,devtest,21.17,51.78,0.8190,0.5237,1012

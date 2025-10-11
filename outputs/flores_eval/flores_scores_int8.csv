@@ -1,7 +1,0 @@
-lang,direction,mode,split,bleu,chrf,comet22,kiwi23,num_sentences
-deu_Latn,en2x,int8,devtest,37.10,63.24,0.8688,0.8131,1012
-deu_Latn,x2en,int8,devtest,44.60,68.56,0.8919,0.8995,1012
-rus_Cyrl,en2x,int8,devtest,30.38,56.98,0.8842,0.8304,1012
-rus_Cyrl,x2en,int8,devtest,36.99,62.78,0.8667,0.8537,1012
-fra_Latn,en2x,int8,devtest,48.86,69.77,0.8746,0.8621,1012
-fra_Latn,x2en,int8,devtest,46.09,69.37,0.8912,0.9134,1012

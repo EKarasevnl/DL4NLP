@@ -1,5 +1,0 @@
-src_lang,tgt_lang,dataset,mode,split,bleu,chrf,comet22,kiwi23,n_samples
-rus_Cyrl,deu_Latn,flores,int8,devtest,25.02,53.92,0.8320,0.7816,1012
-rus_Cyrl,fra_Latn,flores,int8,devtest,33.05,58.72,0.8354,0.8050,1012
-rus_Cyrl,nld_Latn,flores,int8,devtest,19.20,50.12,0.8366,0.7595,1012
-rus_Cyrl,pol_Latn,flores,int8,devtest,16.20,45.49,0.8777,0.7700,1012

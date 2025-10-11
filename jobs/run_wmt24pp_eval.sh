@@ -5,7 +5,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --time=15:00:00
-#SBATCH --output=outputs/wmt24pp_eval.out
+#SBATCH --output=outputs/wmt24pp_eval_%A.out
 #SBATCH --mem=128G
 
 module purge
@@ -46,6 +46,21 @@ fi
 # 2-letter WMT codes for requested languages
 LANGS=de,ru,fr,nl,pl,lv,zu,te,sw
 
+# Allow overriding quantization mode and sparsity via env vars
+if [ -z "$QUANTIZATION_MODE" ]; then
+  QUANTIZATION_MODE="pruned"
+  echo "QUANTIZATION_MODE not set, defaulting to $QUANTIZATION_MODE"
+else
+  echo "QUANTIZATION_MODE set to $QUANTIZATION_MODE"
+fi
+
+if [ -z "$SPARSITY" ]; then
+  SPARSITY=0.1
+  echo "SPARSITY not set, defaulting to $SPARSITY"
+else
+  echo "SPARSITY set to $SPARSITY"
+fi
+
 # Ensure local dataset presence (download once if missing)
 DATA_DIR="/home/scur1832/DL4NLP/data/wmt24pp"
 mkdir -p "$DATA_DIR"
@@ -57,12 +72,14 @@ fi
 python wmt24pp_eval.py \
   --dataset "$DATA_DIR" \
   --langs "$LANGS" \
-  --mode int4 \
+  --mode "$QUANTIZATION_MODE" \
+  --sparsity "$SPARSITY" \
   --directions both \
   --split test \
   --batch_size 8 \
   --max_new_tokens 256 \
-  --output_dir outputs/wmt24pp_eval
+  --output_dir outputs/wmt24pp_eval \
+  --sparsity 0.4
 
 echo "Done. Scores written to outputs/wmt24pp_eval/scores.csv"
 
