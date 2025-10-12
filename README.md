@@ -40,6 +40,17 @@ All scripts compute: BLEU, chrF, COMET-22 (reference-based), and kiwi-23 (refere
 
 Results are saved as CSV files in the specified output directory with columns: language pair, mode, and metric scores.
 
+## Results Analysis and Visualization
+
+The [`ResultsAndPlotting/`](ResultsAndPlotting/) module provides comprehensive analysis and visualization tools for the evaluation results:
+
+- **Analysis Tools**: Jupyter notebooks and helper functions for statistical analysis
+- **Visualization**: Generate heatmaps, line charts, bar charts, and direction analysis plots
+- **Data Processing**: Utilities for processing and aggregating evaluation results
+- **Pre-generated Results**: Extensive collection of evaluation results across different model configurations
+
+See [`ResultsAndPlotting/README_ResultsAndPlotting.md`](ResultsAndPlotting/README_ResultsAndPlotting.md) for detailed documentation.
+
 ## Collaborators
 
 - **Egor Karasev**
